@@ -4,4 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="hengxian">#666666</color>
+    <color name="hengxianBase">#222222</color>
+    <color name="quXian01">#e46f6f</color>
+    <color name="quXian02">#f5e053</color>
+    <color name="basicLight">#aaf5f7f5</color>
+    <color name="basic">#aa00ff07</color>
 </resources>
