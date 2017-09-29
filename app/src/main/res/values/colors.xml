@@ -3,10 +3,16 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="hengxian">#666666</color>
-    <color name="hengxianBase">#222222</color>
-    <color name="quXian01">#e46f6f</color>
-    <color name="quXian02">#f5e053</color>
+    <color name="hengxian">#ededee</color>
+    <color name="hengxianBase">#ededee</color>
+
+    <color name="quXian01">#37d726</color>
+    <color name="quXian0101">#c9e3c6</color>
+    <color name="quXian02">#fabe51</color>
+    <color name="quXian0201">#f4ead5</color>
+
     <color name="basicLight">#aaf5f7f5</color>
-    <color name="basic">#aa00ff07</color>
+    <color name="basic">#aa78fa7b</color>
+    <color name="textColor">#a5a5a6</color>
+    <color name="textColorBlack">#000000</color>
 </resources>
