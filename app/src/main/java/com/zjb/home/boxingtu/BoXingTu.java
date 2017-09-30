@@ -175,9 +175,17 @@ public class BoXingTu extends View {
         paintQuXian01.setStrokeWidth(quXianPx * 3);
         if (xuanZhong > 1 && xuanZhong < numHeng) {
             if (line01[(int) xuanZhong - 1] > line01[(int) xuanZhong - 2]) {
-                canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) xuanZhong - 1], paintQuXian01);
+                if (line01[(int) xuanZhong - 1] > line01[(int) xuanZhong]) {
+                    canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) xuanZhong - 1] + quXianPx, paintQuXian01);
+                } else {
+                    canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) xuanZhong - 1], paintQuXian01);
+                }
             } else {
-                canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) xuanZhong - 1] - quXianPx / 2, paintQuXian01);
+                if (line01[(int) xuanZhong - 1] < line01[(int) xuanZhong]) {
+                    canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) xuanZhong - 1] - quXianPx, paintQuXian01);
+                } else {
+                    canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) xuanZhong - 1] - quXianPx / 2, paintQuXian01);
+                }
             }
         } else {
             canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) xuanZhong - 1] - quXianPx / 2, paintQuXian01);
@@ -186,9 +194,17 @@ public class BoXingTu extends View {
         paintQuXian01.setColor(Color.parseColor("#ffffff"));
         if (xuanZhong > 1 && xuanZhong < numHeng) {
             if (line01[(int) xuanZhong - 1] > line01[(int) xuanZhong - 2]) {
-                canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) xuanZhong - 1], paintQuXian01);
+                if (line01[(int) xuanZhong - 1] > line01[(int) xuanZhong]) {
+                    canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) xuanZhong - 1] + quXianPx, paintQuXian01);
+                } else {
+                    canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) xuanZhong - 1], paintQuXian01);
+                }
             } else {
-                canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) xuanZhong - 1] - quXianPx / 2, paintQuXian01);
+                if (line01[(int) xuanZhong - 1] < line01[(int) xuanZhong]) {
+                    canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) xuanZhong - 1] - quXianPx, paintQuXian01);
+                } else {
+                    canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) xuanZhong - 1] - quXianPx / 2, paintQuXian01);
+                }
             }
         } else {
             canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) xuanZhong - 1] - quXianPx / 2, paintQuXian01);
@@ -207,9 +223,17 @@ public class BoXingTu extends View {
         paintQuXian02.setStrokeWidth(quXianPx * 3);
         if (xuanZhong > 1 && xuanZhong < numHeng) {
             if (line02[(int) xuanZhong - 1] > line02[(int) xuanZhong - 2]) {
-                canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line02[(int) xuanZhong - 1], paintQuXian02);
+                if (line02[(int) xuanZhong - 1] > line02[(int) xuanZhong]) {
+                    canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line02[(int) xuanZhong - 1] + quXianPx, paintQuXian02);
+                } else {
+                    canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line02[(int) xuanZhong - 1], paintQuXian02);
+                }
             } else {
-                canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line02[(int) xuanZhong - 1] - quXianPx / 2, paintQuXian02);
+                if (line02[(int) xuanZhong - 1] < line02[(int) xuanZhong]) {
+                    canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line02[(int) xuanZhong - 1] - quXianPx, paintQuXian02);
+                } else {
+                    canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line02[(int) xuanZhong - 1] - quXianPx / 2, paintQuXian02);
+                }
             }
         } else {
             canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line02[(int) xuanZhong - 1] - quXianPx / 2, paintQuXian02);
@@ -218,9 +242,17 @@ public class BoXingTu extends View {
         paintQuXian02.setColor(Color.parseColor("#ffffff"));
         if (xuanZhong > 1 && xuanZhong < numHeng) {
             if (line02[(int) xuanZhong - 1] > line02[(int) xuanZhong - 2]) {
-                canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line02[(int) xuanZhong - 1], paintQuXian02);
+                if (line02[(int) xuanZhong - 1] > line02[(int) xuanZhong]) {
+                    canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line02[(int) xuanZhong - 1] + quXianPx, paintQuXian02);
+                } else {
+                    canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line02[(int) xuanZhong - 1], paintQuXian02);
+                }
             } else {
-                canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line02[(int) xuanZhong - 1] - quXianPx / 2, paintQuXian02);
+                if (line02[(int) xuanZhong - 1] < line02[(int) xuanZhong]) {
+                    canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line02[(int) xuanZhong - 1] - quXianPx, paintQuXian02);
+                } else {
+                    canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line02[(int) xuanZhong - 1] - quXianPx / 2, paintQuXian02);
+                }
             }
         } else {
             canvas.drawPoint(widthJianGe * (xuanZhong - 0.5f), height - bianJuPx - heightJianGe * numShu * line02[(int) xuanZhong - 1] - quXianPx / 2, paintQuXian02);
