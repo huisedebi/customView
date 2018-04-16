@@ -48,21 +48,21 @@ public class BoXingTu01 extends View {
             0.56f,
             0.52f,
     };
-    private float[] line02 = new float[]{
-            0.42f,
-            0.52f,
-            0.65f,
-            0.58f,
-            0.70f,
-            0.67f,
-            0.88f,
-            0.42f,
-            0.52f,
-            0.65f,
-            0.58f,
-            0.70f,
-            0.67f,
-    };
+//    private float[] line02 = new float[]{
+//            0.42f,
+//            0.52f,
+//            0.65f,
+//            0.58f,
+//            0.70f,
+//            0.67f,
+//            0.88f,
+//            0.42f,
+//            0.52f,
+//            0.65f,
+//            0.58f,
+//            0.70f,
+//            0.67f,
+//    };
     Path path01 = new Path();
 //    Path path02 = new Path();
     private Paint paintText;
@@ -157,10 +157,11 @@ public class BoXingTu01 extends View {
             canvas.drawLine(0, height - bianJuPx - heightJianGe * i, width, height - bianJuPx - heightJianGe * i, paintHengXian);
         }
 
+        paintText.setColor(getResources().getColor(R.color.textColor));
         for (int i = 0; i < text.length; i++) {
-            paintText.setColor(getResources().getColor(R.color.textColor));
-            canvas.drawText(text[i], (widthJianGe - rect.width()) / 2 + widthJianGe * i, height - (bianJuPx - rect.height()) / 2, paintText);
+            canvas.drawText(text[i], (widthJianGe - rect.width()) / 2 + widthJianGe * i-rect.width()/4, height - (bianJuPx - rect.height()) / 2, paintText);
         }
+
 
         canvas.save();
         paintQuXian01.setColor(getResources().getColor(R.color.quXian01));
@@ -179,6 +180,10 @@ public class BoXingTu01 extends View {
         }
         paintQuXian01.setStrokeWidth(quXianPx);
         paintQuXian01.setColor(Color.parseColor("#ffffff"));
+        paintText.setColor(Color.BLACK);
+        for (int i = 0; i < text.length; i++) {
+            canvas.drawText(String.valueOf((int) (line01[i]*10000)), (widthJianGe - rect.width()) / 2 + widthJianGe * i-rect.width()/4, height - bianJuPx - heightJianGe * numShu * line01[i]-heightJianGe/3, paintText);
+        }
     }
 
 
