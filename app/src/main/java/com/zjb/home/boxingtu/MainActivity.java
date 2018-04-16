@@ -6,7 +6,7 @@ import android.widget.SeekBar;
 
 public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
-    private BoXingTu boxingtu;
+    private BoXingTu01 boxingtu;
     private float[] line01 = new float[]{
             0.21f,
             0.38f,
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        boxingtu = (BoXingTu) findViewById(R.id.boxingtu);
+        boxingtu = (BoXingTu01) findViewById(R.id.boxingtu);
         SeekBar seekBar0101 = (SeekBar) findViewById(R.id.seekBar0101);
         SeekBar seekBar0102 = (SeekBar) findViewById(R.id.seekBar0102);
         SeekBar seekBar0103 = (SeekBar) findViewById(R.id.seekBar0103);
@@ -77,50 +77,50 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-        switch (seekBar.getId()) {
-            case R.id.seekBar0101:
-                boxingtu.setValue01(0, (float) i / 100f);
-                break;
-            case R.id.seekBar0102:
-                boxingtu.setValue01(1, (float) i / 100f);
-                break;
-            case R.id.seekBar0103:
-                boxingtu.setValue01(2, (float) i / 100f);
-                break;
-            case R.id.seekBar0104:
-                boxingtu.setValue01(3, (float) i / 100f);
-                break;
-            case R.id.seekBar0105:
-                boxingtu.setValue01(4, (float) i / 100f);
-                break;
-            case R.id.seekBar0106:
-                boxingtu.setValue01(5, (float) i / 100f);
-                break;
-            case R.id.seekBar0107:
-                boxingtu.setValue01(6, (float) i / 100f);
-                break;
-            case R.id.seekBar0201:
-                boxingtu.setValue02(0, (float) i / 100f);
-                break;
-            case R.id.seekBar0202:
-                boxingtu.setValue02(1, (float) i / 100f);
-                break;
-            case R.id.seekBar0203:
-                boxingtu.setValue02(2, (float) i / 100f);
-                break;
-            case R.id.seekBar0204:
-                boxingtu.setValue02(3, (float) i / 100f);
-                break;
-            case R.id.seekBar0205:
-                boxingtu.setValue02(4, (float) i / 100f);
-                break;
-            case R.id.seekBar0206:
-                boxingtu.setValue02(5, (float) i / 100f);
-                break;
-            case R.id.seekBar0207:
-                boxingtu.setValue02(6, (float) i / 100f);
-                break;
-        }
+//        switch (seekBar.getId()) {
+//            case R.id.seekBar0101:
+//                boxingtu.setValue01(0, (float) i / 100f);
+//                break;
+//            case R.id.seekBar0102:
+//                boxingtu.setValue01(1, (float) i / 100f);
+//                break;
+//            case R.id.seekBar0103:
+//                boxingtu.setValue01(2, (float) i / 100f);
+//                break;
+//            case R.id.seekBar0104:
+//                boxingtu.setValue01(3, (float) i / 100f);
+//                break;
+//            case R.id.seekBar0105:
+//                boxingtu.setValue01(4, (float) i / 100f);
+//                break;
+//            case R.id.seekBar0106:
+//                boxingtu.setValue01(5, (float) i / 100f);
+//                break;
+//            case R.id.seekBar0107:
+//                boxingtu.setValue01(6, (float) i / 100f);
+//                break;
+//            case R.id.seekBar0201:
+//                boxingtu.setValue02(0, (float) i / 100f);
+//                break;
+//            case R.id.seekBar0202:
+//                boxingtu.setValue02(1, (float) i / 100f);
+//                break;
+//            case R.id.seekBar0203:
+//                boxingtu.setValue02(2, (float) i / 100f);
+//                break;
+//            case R.id.seekBar0204:
+//                boxingtu.setValue02(3, (float) i / 100f);
+//                break;
+//            case R.id.seekBar0205:
+//                boxingtu.setValue02(4, (float) i / 100f);
+//                break;
+//            case R.id.seekBar0206:
+//                boxingtu.setValue02(5, (float) i / 100f);
+//                break;
+//            case R.id.seekBar0207:
+//                boxingtu.setValue02(6, (float) i / 100f);
+//                break;
+//        }
     }
 
     @Override
