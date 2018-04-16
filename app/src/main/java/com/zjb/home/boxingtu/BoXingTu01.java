@@ -64,7 +64,7 @@ public class BoXingTu01 extends View {
             0.67f,
     };
     Path path01 = new Path();
-    Path path02 = new Path();
+//    Path path02 = new Path();
     private Paint paintText;
     private String[] text = new String[]{
             "1月",
