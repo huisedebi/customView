@@ -162,7 +162,6 @@ public class BoXingTu01 extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         for (int i = 0; i < numShu; i++) {
             canvas.drawLine(0, height - bianJuPx - heightJianGe * i, width, height - bianJuPx - heightJianGe * i, paintHengXian);
         }
