@@ -13,26 +13,61 @@ import android.view.View;
  * Created by Administrator on 2017/9/27.
  */
 public class BoXingTu01 extends View {
-
-    private int numHeng = 12;
+    /**
+     * y轴最大值
+     */
+    private int maxValue = 10000;
+    /**
+     * 横线数
+     */
     private int numShu = 5;
-    private int width;
-    private int height;
-    private int dianHeight = 3;
-    //    private float xuanZhong = 4;//加亮的位置
-    private float widthJianGe;
-    private float heightJianGe;
+    /**
+     * 曲线宽度dp
+     */
     private float quXian = 2;
+    /**
+     * 左右起始点边距dp
+     */
     private float bianJu = 30;
-    private float radius = 40;
-    private float radiusPoint = 10;
+    /**
+     * 阴影偏移量dp
+     */
     private float ShadowXY = 5;
+    /**
+     * 文字大小dp
+     */
     private float textSize = 11;
-    private Paint paintHengXian;
-    private Paint paintQuXian01;
-    //    private Paint paintQuXian02;
-    private Paint paintYingYing;
-    private float bianJuPx;
+    /**
+     * 点的大小：为曲线宽度的倍数
+     */
+    private float pointSize = 4f;
+    /**
+     * 底部文字颜色
+     */
+    private String textColor = "#a5a5a6";
+    /**
+     * 曲线颜色
+     */
+    private String quXianColor = "#37d726";
+    /**
+     * 阴影颜色
+     */
+    private String yinYinColor = "#c9e3c6";
+    /**
+     * 原点颜色
+     */
+    private String pointColor = "#000000";
+    /**
+     * 曲线文字颜色
+     */
+    private String quxianTextColor = "#000000";
+    /**
+     * 横线颜色
+     */
+    private String hengXianColor = "#ededee";
+    /**
+     * 点阵值0~1.0浮点数
+     */
     private float[] line01 = new float[]{
             0.21f,
             0.38f,
@@ -46,26 +81,10 @@ public class BoXingTu01 extends View {
             0.48f,
             0.43f,
             0.56f,
-            0.52f,
     };
-//    private float[] line02 = new float[]{
-//            0.42f,
-//            0.52f,
-//            0.65f,
-//            0.58f,
-//            0.70f,
-//            0.67f,
-//            0.88f,
-//            0.42f,
-//            0.52f,
-//            0.65f,
-//            0.58f,
-//            0.70f,
-//            0.67f,
-//    };
-    Path path01 = new Path();
-//    Path path02 = new Path();
-    private Paint paintText;
+    /**
+     * 底部文字
+     */
     private String[] text = new String[]{
             "1月",
             "2月",
@@ -80,6 +99,15 @@ public class BoXingTu01 extends View {
             "11月",
             "12月",
     };
+    private int width;
+    private int height;
+    private float widthJianGe;
+    private float heightJianGe;
+    private Paint paintHengXian;
+    private Paint paintQuXian01;
+    private float bianJuPx;
+    Path path01 = new Path();
+    private Paint paintText;
     private Rect rect;
     private float quXianPx;
 
@@ -97,43 +125,25 @@ public class BoXingTu01 extends View {
         setLayerType(LAYER_TYPE_SOFTWARE, null);
 
         paintHengXian = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paintHengXian.setColor(getResources().getColor(R.color.hengxian));
+        paintHengXian.setColor(Color.parseColor(hengXianColor));
         paintHengXian.setStrokeWidth(DpUtils.convertDpToPixel(1, getContext()));
 
         quXianPx = DpUtils.convertDpToPixel(quXian, getContext());
 
-//        PathEffect pathEffect = new CornerPathEffect(radius);
         paintQuXian01 = new Paint(Paint.ANTI_ALIAS_FLAG);
-//        paintQuXian01.setPathEffect(pathEffect);
         paintQuXian01.setStyle(Paint.Style.STROKE);
         paintQuXian01.setStrokeCap(Paint.Cap.ROUND);
         paintQuXian01.setShadowLayer(
                 DpUtils.convertDpToPixel(quXian, context),
                 DpUtils.convertDpToPixel(ShadowXY, context),
                 DpUtils.convertDpToPixel(ShadowXY, context),
-                getResources().getColor(R.color.quXian0101));
+                Color.parseColor(yinYinColor));
         paintQuXian01.setStrokeWidth(quXianPx);
-
-//        paintQuXian02 = new Paint(Paint.ANTI_ALIAS_FLAG);
-//        paintQuXian02.setPathEffect(pathEffect);
-//        paintQuXian02.setStyle(Paint.Style.STROKE);
-//        paintQuXian02.setStrokeCap(Paint.Cap.ROUND);
-//        paintQuXian02.setShadowLayer(
-//                DpUtils.convertDpToPixel(quXian, context),
-//                DpUtils.convertDpToPixel(ShadowXY, context),
-//                DpUtils.convertDpToPixel(ShadowXY, context),
-//                getResources().getColor(R.color.quXian0201));
-//        paintQuXian02.setColor(getResources().getColor(R.color.quXian02));
-//        paintQuXian02.setStrokeWidth(quXianPx);
-
-        paintYingYing = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paintYingYing.setStyle(Paint.Style.FILL);
-        paintYingYing.setColor(getResources().getColor(R.color.basicLight));
 
         paintText = new Paint(Paint.ANTI_ALIAS_FLAG);
         paintText.setStyle(Paint.Style.FILL);
         paintText.setTextSize(DpUtils.convertDpToPixel(textSize, context));
-        paintText.setColor(getResources().getColor(R.color.textColor));
+        paintText.setColor(Color.parseColor(textColor));
 
         bianJuPx = DpUtils.convertDpToPixel(bianJu, getContext());
         rect = new Rect();
@@ -145,7 +155,7 @@ public class BoXingTu01 extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         width = MeasureSpec.getSize(widthMeasureSpec);
         height = MeasureSpec.getSize(heightMeasureSpec);
-        widthJianGe = width / numHeng;
+        widthJianGe = width / line01.length;
         heightJianGe = (height - bianJuPx) / numShu;
     }
 
@@ -157,36 +167,37 @@ public class BoXingTu01 extends View {
             canvas.drawLine(0, height - bianJuPx - heightJianGe * i, width, height - bianJuPx - heightJianGe * i, paintHengXian);
         }
 
-        paintText.setColor(getResources().getColor(R.color.textColor));
+        paintText.setColor(Color.parseColor(textColor));
         for (int i = 0; i < text.length; i++) {
             canvas.drawText(text[i], (widthJianGe - rect.width()) / 2 + widthJianGe * i-rect.width()/4, height - (bianJuPx - rect.height()) / 2, paintText);
         }
 
 
         canvas.save();
-        paintQuXian01.setColor(getResources().getColor(R.color.quXian01));
+        paintQuXian01.setColor(Color.parseColor(quXianColor));
         path01.reset();
         path01.moveTo(widthJianGe / 2 + widthJianGe * 0, height - bianJuPx - heightJianGe * numShu * line01[0]);
-        for (int i = 0; i < numHeng - 1; i++) {
+        for (int i = 0; i < line01.length - 1; i++) {
             path01.lineTo(widthJianGe / 2 + widthJianGe * (i + 1), height - bianJuPx - heightJianGe * numShu * line01[(i + 1)]);
         }
         canvas.drawPath(path01, paintQuXian01);
         canvas.restore();
         paintQuXian01.setShadowLayer(0, 0, 0, Color.WHITE);
-        paintQuXian01.setColor(Color.BLACK);
-        paintQuXian01.setStrokeWidth(quXianPx * 4);
-        for (int i = 0; i < numHeng; i++) {
+        paintQuXian01.setColor(Color.parseColor(pointColor));
+        paintQuXian01.setStrokeWidth(quXianPx * pointSize);
+        for (int i = 0; i < line01.length; i++) {
             canvas.drawPoint(widthJianGe * i + widthJianGe / 2, height - bianJuPx - heightJianGe * numShu * line01[i], paintQuXian01);
         }
-        paintQuXian01.setStrokeWidth(quXianPx);
-        paintQuXian01.setColor(Color.parseColor("#ffffff"));
-        paintText.setColor(Color.BLACK);
+        paintText.setColor(Color.parseColor(quxianTextColor));
         for (int i = 0; i < text.length; i++) {
-            canvas.drawText(String.valueOf((int) (line01[i]*10000)), (widthJianGe - rect.width()) / 2 + widthJianGe * i-rect.width()/4, height - bianJuPx - heightJianGe * numShu * line01[i]-heightJianGe/3, paintText);
+            canvas.drawText(String.valueOf((int) (line01[i]*maxValue)), (widthJianGe - rect.width()) / 2 + widthJianGe * i-rect.width()/4, height - bianJuPx - heightJianGe * numShu * line01[i]-heightJianGe/3, paintText);
         }
     }
 
-
+    /**
+     * 设置值
+     * @param value
+     */
     public void setValue(float[] value) {
         line01 = value;
         invalidate();
