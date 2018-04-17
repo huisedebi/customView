@@ -69,7 +69,7 @@ public class BoXingTu01 extends View {
      * 点阵值0~1.0浮点数
      */
     private float[] line01 = new float[]{
-            0.21f,
+            0.91f,
             0.38f,
             0.48f,
             0.43f,
@@ -80,7 +80,7 @@ public class BoXingTu01 extends View {
             0.38f,
             0.48f,
             0.43f,
-            0.56f,
+            0.96f,
     };
     /**
      * 底部文字
@@ -156,7 +156,7 @@ public class BoXingTu01 extends View {
         width = MeasureSpec.getSize(widthMeasureSpec);
         height = MeasureSpec.getSize(heightMeasureSpec);
         widthJianGe = width / line01.length;
-        heightJianGe = (height - bianJuPx) / numShu;
+        heightJianGe = (height - bianJuPx-getPaddingTop()) / numShu;
     }
 
     @Override

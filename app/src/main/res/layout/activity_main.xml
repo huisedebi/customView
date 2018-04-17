@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.zjb.home.boxingtu.MainActivity">
-
     <com.zjb.home.boxingtu.BoXingTu01
+        android:paddingTop="20dp"
         android:id="@+id/boxingtu"
         android:layout_width="match_parent"
         android:layout_height="240dp"/>
