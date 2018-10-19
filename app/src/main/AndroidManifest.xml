@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".BoXingTuActivity" />
-        <activity android:name=".BoXingTu01Activity"></activity>
+        <activity android:name=".BoXingTu01Activity" />
+        <activity android:name=".BoXingTu02Activity"></activity>
     </application>
 
 </manifest>

@@ -15,4 +15,6 @@
     <color name="basic">#aa78fa7b</color>
     <color name="textColor">#a5a5a6</color>
     <color name="textColorBlack">#000000</color>
+    <color name="startColor01">#b65db9</color>
+    <color name="endColor01">#5056c8</color>
 </resources>
