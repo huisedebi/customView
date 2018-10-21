@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:background="#24232f"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".BoXingTu02Activity">
     <RelativeLayout
         android:layout_marginLeft="12dp"
