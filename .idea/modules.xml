@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/BoXingTu.iml" filepath="$PROJECT_DIR$/.idea/BoXingTu.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/BoXingTu.iml" filepath="$PROJECT_DIR$/.idea/BoXingTu.iml" />
-      <module fileurl="file://F:/project/BoXingTu/BoXingTu.iml" filepath="F:/project/BoXingTu/BoXingTu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BoXingTu.iml" filepath="$PROJECT_DIR$/BoXingTu.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://F:/project/BoXingTu/app/app.iml" filepath="F:/project/BoXingTu/app/app.iml" />
     </modules>
   </component>
 </project>

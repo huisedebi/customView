@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.zjb.home.boxingtu.BoXingTu02
-            android:paddingTop="10dp"
+            android:paddingTop="25dp"
             android:layout_width="match_parent"
             android:layout_height="240dp" />
     </RelativeLayout>

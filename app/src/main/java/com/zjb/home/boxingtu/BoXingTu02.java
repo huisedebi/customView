@@ -22,7 +22,7 @@ public class BoXingTu02 extends View {
     /**
      * 横线数
      */
-    private int numShu = 5;
+    private int numShu = 4;
     /**
      * 曲线宽度dp
      */
@@ -86,21 +86,21 @@ public class BoXingTu02 extends View {
             0.91f,
             0.38f,
             0.48f,
-            0.43f,
-            0.56f,
-            0.52f,
-            0.63f,
-            0.21f,
-            0.38f,
-            0.48f,
-            0.43f,
-            0.96f,
-            0.91f,
-            0.38f,
-            0.48f,
-            0.43f,
-            0.56f,
-            0.52f,
+            -1f,
+            -1f,
+            -1f,
+            -1f,
+            -1f,
+            -1f,
+            -1f,
+            -1f,
+            -1f,
+            -1f,
+            -1f,
+            -1f,
+            -1f,
+            -1f,
+            -1f,
     };
     /**
      * 底部文字
@@ -179,7 +179,7 @@ public class BoXingTu02 extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        width = (int) (MeasureSpec.getSize(widthMeasureSpec)-rightPadding);
+        width = (int) (MeasureSpec.getSize(widthMeasureSpec) - rightPadding);
         height = MeasureSpec.getSize(heightMeasureSpec);
         rightPadding = DpUtils.convertDpToPixel(10, getContext());
         widthJianGePoint = width / line01.length;
@@ -188,35 +188,39 @@ public class BoXingTu02 extends View {
         /**
          * 左边文字占用宽度
          */
-        leftTextMargin = rectLeft.width();
+        leftTextMargin = rectLeft.width()+(int) DpUtils.convertDpToPixel(12,getContext());
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        for (int i = 0; i < numShu; i++) {
+        for (int i = 0; i < numShu+1; i++) {
             canvas.drawLine(leftTextMargin, height - bianJuPx - heightJianGe * i, width, height - bianJuPx - heightJianGe * i, paintHengXian);
         }
 
         paintText.setColor(Color.parseColor(textColor));
+        for (int i = 0; i < textLeft.length; i++) {
+            canvas.drawText(textLeft[i],0, height - bianJuPx - heightJianGe * i+rectLeft.height()/2-quXianPx/2, paintText);
+        }
         for (int i = 0; i < text.length; i++) {
             canvas.drawText(text[i], (widthJianGeText - rect.width()) / 2 + widthJianGeText * i - rect.width() / 4 + leftTextMargin, height - (bianJuPx - rect.height()) / 2, paintText);
         }
 
-
         canvas.save();
         paintQuXian01.setColor(Color.parseColor(quXianColor));
         path01.reset();
-        path01.moveTo(widthJianGePoint / 2 + widthJianGePoint * 0+leftTextMargin, height - bianJuPx - heightJianGe * numShu * line01[0]);
+        path01.moveTo(widthJianGePoint / 2 + widthJianGePoint * 0 + leftTextMargin, height - bianJuPx - heightJianGe * numShu * line01[0]);
         for (int i = 0; i < line01.length - 1; i++) {
-            path01.lineTo(widthJianGePoint / 2 + widthJianGePoint * (i + 1)+leftTextMargin, height - bianJuPx - heightJianGe * numShu * line01[(i + 1)]);
+            if (line01[i + 1] >= 0) {
+                path01.lineTo(widthJianGePoint / 2 + widthJianGePoint * (i + 1) + leftTextMargin, height - bianJuPx - heightJianGe * numShu * line01[(i + 1)]);
+            }
         }
         canvas.drawPath(path01, paintQuXian01);
         canvas.restore();
         paintQuXian01.setShadowLayer(0, 0, 0, Color.WHITE);
         paintQuXian01.setColor(Color.parseColor(pointColor));
         paintQuXian01.setStrokeWidth(quXianPx * pointSize);
-        canvas.drawPoint(widthJianGePoint * (line01.length - 1) + widthJianGePoint / 2+leftTextMargin, height - bianJuPx - heightJianGe * numShu * line01[(line01.length - 1)], paintQuXian01);
+        canvas.drawPoint(widthJianGePoint * (14) + widthJianGePoint / 2 + leftTextMargin, height - bianJuPx - heightJianGe * numShu * line01[14], paintQuXian01);
         paintText.setColor(Color.parseColor(quxianTextColor));
     }
 
