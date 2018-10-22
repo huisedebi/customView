@@ -20,4 +20,8 @@
     <color name="startColor01_tran">#33b65db9</color>
     <color name="endColor01_tran">#335056c8</color>
     <color name="boXing02Bg">#2e2e3b</color>
+    <color name="startColor02">#184802</color>
+    <color name="endColor02">#c9ec8e</color>
+    <color name="startColor02_tran">#22184802</color>
+    <color name="endColor02_tran">#22c9ec8e</color>
 </resources>

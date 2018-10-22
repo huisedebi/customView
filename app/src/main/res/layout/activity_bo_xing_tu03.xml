@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#24232f"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".BoXingTu03Activity">
+    <RelativeLayout
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="60dp"
+        android:background="@color/boXing02Bg"
+        android:paddingLeft="10dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.zjb.home.boxingtu.BoXingTu03
+            android:id="@+id/boXingTu03"
+            android:background="#00000000"
+            android:paddingTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="240dp" />
+    </RelativeLayout>
+</LinearLayout>
