@@ -17,4 +17,7 @@
     <color name="textColorBlack">#000000</color>
     <color name="startColor01">#b65db9</color>
     <color name="endColor01">#5056c8</color>
+    <color name="startColor01_tran">#33b65db9</color>
+    <color name="endColor01_tran">#335056c8</color>
+    <color name="boXing02Bg">#2e2e3b</color>
 </resources>

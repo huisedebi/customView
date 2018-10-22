@@ -1,6 +1,7 @@
 package com.zjb.home.boxingtu;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.CornerPathEffect;
@@ -12,12 +13,17 @@ import android.graphics.Rect;
 import android.graphics.Shader;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 /**
  * Created by Administrator on 2017/9/27.
  */
-public class BoXingTu02 extends View {
+public class BoXingTu02 extends RelativeLayout {
     /**
      * y轴最大值
      */
@@ -88,7 +94,7 @@ public class BoXingTu02 extends View {
             0.96f,
             0.91f,
             0.38f,
-            0.48f,
+            0.78f,
             -1f,
             -1f,
             -1f,
@@ -145,6 +151,9 @@ public class BoXingTu02 extends View {
     private int leftTextMargin;
     private int duanDian = 14;
     private float rightPadding;
+    private Paint paintZheGai;
+    private float hengXiangPx;
+    private View view;
 
     public BoXingTu02(Context context) {
         super(context);
@@ -161,7 +170,8 @@ public class BoXingTu02 extends View {
 
         paintHengXian = new Paint(Paint.ANTI_ALIAS_FLAG);
         paintHengXian.setColor(Color.parseColor(hengXianColor));
-        paintHengXian.setStrokeWidth(DpUtils.convertDpToPixel(1, getContext()));
+        hengXiangPx = DpUtils.convertDpToPixel(1, getContext());
+        paintHengXian.setStrokeWidth(hengXiangPx);
         PathEffect pathEffect = new CornerPathEffect(radius);
         quXianPx = DpUtils.convertDpToPixel(quXian, getContext());
 
@@ -175,6 +185,11 @@ public class BoXingTu02 extends View {
         paintYinYing.setPathEffect(pathEffect);
         paintYinYing.setStyle(Paint.Style.FILL_AND_STROKE);
         paintYinYing.setStrokeWidth(quXianPx);
+
+        paintZheGai = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintZheGai.setStyle(Paint.Style.FILL_AND_STROKE);
+        paintZheGai.setStrokeWidth(quXianPx);
+        paintZheGai.setColor(ContextCompat.getColor(getContext(), R.color.boXing02Bg));
 
         paintPoint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paintPoint.setStyle(Paint.Style.STROKE);
@@ -192,6 +207,8 @@ public class BoXingTu02 extends View {
         rectLeft = new Rect();
         paintText.getTextBounds(text[0], 0, text[0].length(), rect);
         paintText.getTextBounds(textLeft[textLeft.length - 1], 0, textLeft[textLeft.length - 1].length(), rectLeft);
+        view = LayoutInflater.from(getContext()).inflate(R.layout.view_float_boxingtu02, null);
+        addView(view);
     }
 
     @Override
@@ -209,8 +226,10 @@ public class BoXingTu02 extends View {
         leftTextMargin = rectLeft.width() + (int) DpUtils.convertDpToPixel(12, getContext());
         Shader shader = new LinearGradient(0, height / 2, widthJianGePoint * duanDian, height / 2, ContextCompat.getColor(getContext(), R.color.startColor01),
                 ContextCompat.getColor(getContext(), R.color.endColor01), Shader.TileMode.CLAMP);
+        Shader shaderYinYing = new LinearGradient(0, height / 2, widthJianGePoint * duanDian, height / 2, ContextCompat.getColor(getContext(), R.color.startColor01_tran),
+                ContextCompat.getColor(getContext(), R.color.endColor01_tran), Shader.TileMode.CLAMP);
         paintQuXian01.setShader(shader);
-        paintYinYing.setShader(shader);
+        paintYinYing.setShader(shaderYinYing);
     }
 
     @Override
@@ -220,13 +239,6 @@ public class BoXingTu02 extends View {
             canvas.drawLine(leftTextMargin, height - bianJuPx - heightJianGe * i, width, height - bianJuPx - heightJianGe * i, paintHengXian);
         }
 
-        paintText.setColor(Color.parseColor(textColor));
-        for (int i = 0; i < textLeft.length; i++) {
-            canvas.drawText(textLeft[i], 0, height - bianJuPx - heightJianGe * i + rectLeft.height() / 2 - quXianPx / 2, paintText);
-        }
-        for (int i = 0; i < text.length; i++) {
-            canvas.drawText(text[i], (widthJianGeText - rect.width()) / 2 + widthJianGeText * i - rect.width() / 4 + leftTextMargin, height - (bianJuPx - rect.height()) / 2, paintText);
-        }
 
         canvas.save();
         path01.reset();
@@ -240,12 +252,27 @@ public class BoXingTu02 extends View {
         canvas.restore();
         canvas.save();
         path02.addPath(path01);
-        path02.lineTo(widthJianGePoint / 2 + widthJianGePoint * (duanDian) + leftTextMargin, height - bianJuPx);
-        path02.lineTo(widthJianGePoint / 2 + widthJianGePoint * 0 + leftTextMargin, height - bianJuPx);
+        path02.lineTo(widthJianGePoint / 2 + widthJianGePoint * (duanDian) + leftTextMargin, height);
+        path02.lineTo(widthJianGePoint / 2 + widthJianGePoint * 0 + leftTextMargin, height);
         path02.close();
         canvas.drawPath(path02, paintYinYing);
         canvas.restore();
+
+        canvas.drawRect(widthJianGePoint / 2 + widthJianGePoint * 0 + leftTextMargin, height - bianJuPx + hengXiangPx * 2, widthJianGePoint / 2 + widthJianGePoint * (duanDian) + leftTextMargin, height, paintZheGai);
+
         canvas.drawPoint(widthJianGePoint * (duanDian) + widthJianGePoint / 2 + leftTextMargin, height - bianJuPx - heightJianGe * numShu * line01[duanDian], paintPoint);
+
+        paintText.setColor(Color.parseColor(textColor));
+        for (int i = 0; i < textLeft.length; i++) {
+            canvas.drawText(textLeft[i], 0, height - bianJuPx - heightJianGe * i + rectLeft.height() / 2 - quXianPx / 2, paintText);
+        }
+        for (int i = 0; i < text.length; i++) {
+            canvas.drawText(text[i], (widthJianGeText - rect.width()) / 2 + widthJianGeText * i - rect.width() / 4 + leftTextMargin, height - (bianJuPx - rect.height()) / 2, paintText);
+        }
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
+        layoutParams.leftMargin = (int) (widthJianGePoint * (duanDian) + widthJianGePoint / 2 + leftTextMargin - view.getMeasuredWidth() / 2);
+        layoutParams.topMargin = (int) (height - bianJuPx - heightJianGe * numShu * line01[duanDian] - 2.5f * view.getMeasuredHeight());
+        view.setLayoutParams(layoutParams);
     }
 
     /**
