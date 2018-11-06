@@ -7,10 +7,17 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <declare-styleable name="ConnerCouponsTextView">
         <attr name="conner" format="dimension" />
         <attr name="connerColor" format="color" />
         <attr name="leftShow" format="boolean" />
         <attr name="rightShow" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="GapTextView">
+        <attr name="gap" format="dimension" />
+        <attr name="GapconnerColor" format="color" />
+        <attr name="GapleftShow" format="boolean" />
+        <attr name="GaprightShow" format="boolean" />
     </declare-styleable>
 </resources>

@@ -19,7 +19,8 @@
         <activity android:name=".BoXingTu01Activity" />
         <activity android:name=".BoXingTu02Activity" />
         <activity android:name=".BoXingTu03Activity" />
-        <activity android:name=".YuanJiaoViewActivity"></activity>
+        <activity android:name=".YuanJiaoViewActivity" />
+        <activity android:name=".QueKouActivity"></activity>
     </application>
 
 </manifest>

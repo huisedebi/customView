@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:context=".QueKouActivity">
+
+    <com.zjb.home.boxingtu.GapTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ff0000"
+        app:gap="5dp"
+        android:paddingLeft="15dp"
+        app:GapconnerColor="#ffffff"
+        android:paddingRight="15dp"
+        android:text="缺口"
+        android:textColor="#ffffff" />
+</LinearLayout>
