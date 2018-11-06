@@ -38,6 +38,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="波形图03" />
+            <Button
+                android:id="@+id/btn0005"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="圆角形状" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
