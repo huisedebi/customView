@@ -50,6 +50,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="缺口形状" />
+
+            <Button
+                android:id="@+id/btn0007"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="线条" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -20,7 +20,8 @@
         <activity android:name=".BoXingTu02Activity" />
         <activity android:name=".BoXingTu03Activity" />
         <activity android:name=".YuanJiaoViewActivity" />
-        <activity android:name=".QueKouActivity"></activity>
+        <activity android:name=".QueKouActivity" />
+        <activity android:name=".LineActivity"></activity>
     </application>
 
 </manifest>
