@@ -5,5 +5,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MusicActivity">
+    <RelativeLayout
+        android:visibility="visible"
+        android:id="@+id/viewMusic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_basic_jian_bian180">
 
+        <ImageView
+            android:id="@+id/imageMusic"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/music" />
+        <Button
+            android:layout_marginLeft="50dp"
+            android:id="@+id/btnFangSongDN"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="80dp"
+            android:background="@drawable/shape_ceyice"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="放松大脑"
+            android:textColor="@color/ceyice"
+            android:textSize="16dp" />
+        <Button
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/btnKaiShiCS"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="80dp"
+            android:background="@drawable/shape_ceyice"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="开始测试"
+            android:textColor="@color/ceyice"
+            android:textSize="16dp" />
+
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

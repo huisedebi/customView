@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn0009).setOnClickListener(this);
         findViewById(R.id.btn0010).setOnClickListener(this);
         findViewById(R.id.btn0011).setOnClickListener(this);
+        findViewById(R.id.btn0012).setOnClickListener(this);
     }
 
     @Override
@@ -72,6 +73,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn0011:
                 intent.setClass(this, RoateAnimActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn0012:
+                intent.setClass(this, MusicActivity.class);
                 startActivity(intent);
                 break;
             default:
