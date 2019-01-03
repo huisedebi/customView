@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NaoBoTuActivity">
+
+    <LinearLayout
+        android:id="@+id/viewNaoBo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_basic_jian_bian180"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/textLeftTime"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="120"
+            android:textColor="#bbf2ff"
+            android:textSize="30dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="12dp"
+                android:text="左脑"
+                android:textColor="#bbf2ff" />
+
+            <TextView
+                android:id="@+id/textZuoNaoDis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="12dp"
+                android:text="72"
+                android:textColor="#bbf2ff"
+                android:textSize="40dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textZuoNaoDis"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/textZuoNaoDis"
+                android:text="Distribution:"
+                android:textColor="#49a9f4" />
+        </RelativeLayout>
+
+        <com.zjb.home.boxingtu.view.NaoBoTu
+            android:id="@+id/naoBo01"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="12dp"
+                android:text="右脑"
+                android:textColor="#bbf2ff" />
+
+            <TextView
+                android:id="@+id/textYouNaoDis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="12dp"
+                android:text="72"
+                android:textColor="#bbf2ff"
+                android:textSize="40dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textYouNaoDis"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/textYouNaoDis"
+                android:text="Distribution:"
+                android:textColor="#49a9f4" />
+        </RelativeLayout>
+
+        <com.zjb.home.boxingtu.view.NaoBoTu
+            android:id="@+id/naoBo02"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
