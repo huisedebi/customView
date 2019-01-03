@@ -20,4 +20,9 @@
         <attr name="GapleftShow" format="boolean" />
         <attr name="GaprightShow" format="boolean" />
     </declare-styleable>
+    <style name="mydialog">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item><!--背景透明-->
+    </style>
 </resources>

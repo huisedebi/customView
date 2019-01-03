@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.zjb.home.boxingtu.dialog.RedbagDialog;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn0007).setOnClickListener(this);
         findViewById(R.id.btn0008).setOnClickListener(this);
         findViewById(R.id.btn0009).setOnClickListener(this);
+        findViewById(R.id.btn0010).setOnClickListener(this);
     }
 
     @Override
@@ -62,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn0009:
                 intent.setClass(this, CirclePrecent02Activity.class);
                 startActivity(intent);
+                break;
+            case R.id.btn0010:
+                new RedbagDialog(MainActivity.this).hongBaoDialog();
                 break;
             default:
                 break;

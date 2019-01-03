@@ -24,4 +24,6 @@
     <color name="endColor02">#c9ec8e</color>
     <color name="startColor02_tran">#22184802</color>
     <color name="endColor02_tran">#22c9ec8e</color>
+    <color name="tranblack">#66000000</color>
+    <color name="transparent">#00000000</color>
 </resources>
