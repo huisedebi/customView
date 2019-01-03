@@ -25,7 +25,8 @@
         <activity android:name=".CirclePrecentActivity" />
         <activity android:name=".CirclePrecent02Activity" />
         <activity android:name=".RoateAnimActivity" />
-        <activity android:name=".MusicActivity"></activity>
+        <activity android:name=".MusicActivity" />
+        <activity android:name=".EndTimeActivity"></activity>
     </application>
 
 </manifest>

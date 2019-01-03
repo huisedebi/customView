@@ -80,7 +80,12 @@
                 android:id="@+id/btn0012"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="音乐" />
+                android:text="音乐播放动画" />
+            <Button
+                android:id="@+id/btn0013"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="倒计时动画" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
