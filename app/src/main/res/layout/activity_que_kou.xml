@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".QueKouActivity">
 
-    <com.zjb.home.boxingtu.GapTextView
+    <com.zjb.home.boxingtu.view.GapTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#ff0000"
@@ -19,7 +19,7 @@
         app:GapconnerColor="#ffffff"
         app:gap="5dp" />
 
-    <com.zjb.home.boxingtu.NumTextView
+    <com.zjb.home.boxingtu.view.NumTextView
         android:gravity="center"
         android:layout_marginTop="20dp"
         android:paddingTop="2dp"
@@ -31,7 +31,7 @@
         android:background="@drawable/shape_num"
         android:text="3"
         android:textColor="#ffffff" />
-    <com.zjb.home.boxingtu.NumTextView
+    <com.zjb.home.boxingtu.view.NumTextView
         android:gravity="center"
         android:layout_marginTop="20dp"
         android:paddingTop="2dp"

@@ -1,4 +1,4 @@
-package com.zjb.home.boxingtu;
+package com.zjb.home.boxingtu.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,6 +8,8 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.zjb.home.boxingtu.util.DpUtils;
 
 /**
  * Created by Administrator on 2017/9/27.

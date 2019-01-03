@@ -1,4 +1,4 @@
-package com.zjb.home.boxingtu;
+package com.zjb.home.boxingtu.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,6 +9,8 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
+
+import com.zjb.home.boxingtu.R;
 
 
 /**

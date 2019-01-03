@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".BoXingTu01Activity">
 
-    <com.zjb.home.boxingtu.BoXingTu01
+    <com.zjb.home.boxingtu.view.BoXingTu01
         android:paddingTop="20dp"
         android:layout_marginTop="60dp"
         android:layout_width="match_parent"

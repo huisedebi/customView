@@ -1,4 +1,4 @@
-package com.zjb.home.boxingtu;
+package com.zjb.home.boxingtu.view;
 
 import android.content.Context;
 import android.graphics.Canvas;

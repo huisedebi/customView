@@ -6,14 +6,14 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".YuanJiaoViewActivity">
-    <com.zjb.home.boxingtu.ConnerView
+    <com.zjb.home.boxingtu.view.ConnerView
         android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="30dp" />
-    <com.zjb.home.boxingtu.ConnerCoupons01View
+    <com.zjb.home.boxingtu.view.ConnerCoupons01View
         android:layout_width="match_parent"
         android:layout_height="50dp" />
-    <com.zjb.home.boxingtu.ConnerCouponsTextView
+    <com.zjb.home.boxingtu.view.ConnerCouponsTextView
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:background="#ff0000"

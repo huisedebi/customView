@@ -1,4 +1,4 @@
-package com.zjb.home.boxingtu;
+package com.zjb.home.boxingtu.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -15,6 +15,9 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.zjb.home.boxingtu.util.DpUtils;
+import com.zjb.home.boxingtu.R;
 
 /**
  * Created by Administrator on 2017/9/27.

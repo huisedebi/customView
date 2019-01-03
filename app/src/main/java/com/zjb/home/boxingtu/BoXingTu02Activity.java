@@ -2,10 +2,8 @@ package com.zjb.home.boxingtu;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
+
+import com.zjb.home.boxingtu.view.BoXingTu02;
 
 public class BoXingTu02Activity extends AppCompatActivity {
 

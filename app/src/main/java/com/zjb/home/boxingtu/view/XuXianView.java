@@ -1,4 +1,4 @@
-package com.zjb.home.boxingtu;
+package com.zjb.home.boxingtu.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -7,12 +7,13 @@ import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathEffect;
-import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.zjb.home.boxingtu.util.DpUtils;
 
-public class ConnerView extends View {
+
+public class XuXianView extends View {
     private float lineWidth;
     private float lineJianGE;
     private int conner;
@@ -21,17 +22,17 @@ public class ConnerView extends View {
     private int height;
     Path path;
 
-    public ConnerView(Context context) {
+    public XuXianView(Context context) {
         super(context);
         this.paint = new Paint(1);
         this.path = new Path();
     }
 
-    public ConnerView(Context context, AttributeSet attrs) {
+    public XuXianView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ConnerView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public XuXianView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.paint = new Paint(1);
         this.path = new Path();
@@ -53,17 +54,10 @@ public class ConnerView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        this.conner = this.height / 2;
-        this.paint.setPathEffect((PathEffect)null);
-        RectF rectFleft = new RectF((float)(-this.conner), 0.0F + this.lineWidth / 2.0F, (float)this.conner, (float)this.height - this.lineWidth / 2.0F);
-        canvas.drawOval(rectFleft, this.paint);
-        RectF rectFright = new RectF((float)(this.width - this.conner), 0.0F + this.lineWidth / 2.0F, (float)(this.getWidth() + this.conner), (float)this.height - this.lineWidth / 2.0F);
-        canvas.drawOval(rectFright, this.paint);
-        canvas.save();
         PathEffect pathEffect = new DashPathEffect(new float[]{this.lineJianGE, this.lineJianGE}, 0.0F);
         this.paint.setPathEffect(pathEffect);
-        this.path.moveTo((float)(0 + this.conner) + DpUtils.convertDpToPixel(10.0F, this.getContext()), (float)this.conner);
-        this.path.lineTo((float)(this.width - this.conner) - DpUtils.convertDpToPixel(10.0F, this.getContext()), (float)this.conner);
+        this.path.moveTo(0, height/2);
+        this.path.lineTo(width, height/2);
         canvas.drawPath(this.path, this.paint);
         canvas.restore();
     }

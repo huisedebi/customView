@@ -21,7 +21,9 @@
         <activity android:name=".BoXingTu03Activity" />
         <activity android:name=".YuanJiaoViewActivity" />
         <activity android:name=".QueKouActivity" />
-        <activity android:name=".LineActivity"></activity>
+        <activity android:name=".LineActivity" />
+        <activity android:name=".CirclePrecentActivity" />
+        <activity android:name=".CirclePrecent02Activity"></activity>
     </application>
 
 </manifest>

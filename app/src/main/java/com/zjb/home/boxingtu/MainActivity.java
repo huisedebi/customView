@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.SeekBar;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,6 +19,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn0005).setOnClickListener(this);
         findViewById(R.id.btn0006).setOnClickListener(this);
         findViewById(R.id.btn0007).setOnClickListener(this);
+        findViewById(R.id.btn0008).setOnClickListener(this);
+        findViewById(R.id.btn0009).setOnClickListener(this);
     }
 
     @Override
@@ -52,6 +53,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn0007:
                 intent.setClass(this, LineActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn0008:
+                intent.setClass(this, CirclePrecentActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn0009:
+                intent.setClass(this, CirclePrecent02Activity.class);
                 startActivity(intent);
                 break;
             default:
