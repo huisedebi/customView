@@ -34,7 +34,7 @@ public class UpLoadAnimActivity extends AppCompatActivity {
         setContentView(R.layout.activity_up_load_anim);
         roateImg = (RoateImg) findViewById(R.id.roateImg);
         textShangChuanStatue = (TextView) findViewById(R.id.textShangChuanStatue);
-        viewShangChuan = findViewById(R.id.viewDuQuBG);
+        viewShangChuan = findViewById(R.id.viewShangChuan);
         viewDuQuBG = findViewById(R.id.viewDuQuBG);
         screenWidth = ScreenUtils.getScreenWidth(UpLoadAnimActivity.this);
         ImageView imageView1 = new ImageView(UpLoadAnimActivity.this);
