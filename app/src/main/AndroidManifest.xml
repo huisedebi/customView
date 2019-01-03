@@ -23,7 +23,9 @@
         <activity android:name=".QueKouActivity" />
         <activity android:name=".LineActivity" />
         <activity android:name=".CirclePrecentActivity" />
-        <activity android:name=".CirclePrecent02Activity"></activity>
+        <activity android:name=".CirclePrecent02Activity" />
+        <activity android:name=".RoateAnimActivity" />
+        <activity android:name=".MusicActivity"></activity>
     </application>
 
 </manifest>

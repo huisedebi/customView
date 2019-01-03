@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/viewKaiShiJC"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/naoboceyicebg" />
+        <com.zjb.home.boxingtu.view.SquareLayout
+            android:layout_marginTop="100dp"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_margin="30dp"
+                android:layout_centerInParent="true"
+                android:id="@+id/imageNaoZi"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/naozi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:id="@+id/imageNeiQuan"
+                android:layout_margin="10dp"
+                android:src="@mipmap/neiquan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:id="@+id/imageWaiQuan"
+                android:src="@mipmap/waiquan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.zjb.home.boxingtu.view.SquareLayout>
+
+
+    </RelativeLayout>
+</RelativeLayout>

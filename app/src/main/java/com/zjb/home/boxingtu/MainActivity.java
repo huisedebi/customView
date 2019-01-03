@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn0008).setOnClickListener(this);
         findViewById(R.id.btn0009).setOnClickListener(this);
         findViewById(R.id.btn0010).setOnClickListener(this);
+        findViewById(R.id.btn0011).setOnClickListener(this);
     }
 
     @Override
@@ -68,6 +69,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn0010:
                 new RedbagDialog(MainActivity.this).hongBaoDialog();
+                break;
+            case R.id.btn0011:
+                intent.setClass(this, RoateAnimActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;
