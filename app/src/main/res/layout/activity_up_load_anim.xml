@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpLoadAnimActivity">
+    <RelativeLayout
+        android:id="@+id/viewShangChuan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_basic_jian_bian180">
+
+        <TextView
+            android:id="@+id/textShangChuanStatue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="数据上传中……"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+
+        <com.zjb.home.boxingtu.view.RoateImg
+            android:id="@+id/roateImg"
+            android:layout_width="80dp"
+            android:layout_height="149dp"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:gravity="center"
+        android:id="@+id/viewDuQuBG"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_basic_jian_bian180"
+        android:visibility="gone">
+        <RelativeLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_centerHorizontal="true"
+                android:id="@+id/imageDuQuBaoGao"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/duqubaogaoimg" />
+
+            <Button
+                android:id="@+id/btnDuQuBG"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@+id/imageDuQuBaoGao"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/shape_ceyice"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:text="查看报告"
+                android:textColor="@color/ceyice"
+                android:textSize="16dp" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

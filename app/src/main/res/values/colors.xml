@@ -27,4 +27,5 @@
     <color name="tranblack">#66000000</color>
     <color name="transparent">#00000000</color>
     <color name="ceyice">#bbf2ff</color>
+    <color name="white">#FFFFFF</color>
 </resources>

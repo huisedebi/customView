@@ -27,7 +27,8 @@
         <activity android:name=".RoateAnimActivity" />
         <activity android:name=".MusicActivity" />
         <activity android:name=".EndTimeActivity" />
-        <activity android:name=".NaoBoTuActivity"></activity>
+        <activity android:name=".NaoBoTuActivity" />
+        <activity android:name=".UpLoadAnimActivity"></activity>
     </application>
 
 </manifest>

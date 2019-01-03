@@ -91,6 +91,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="脑波动画" />
+            <Button
+                android:id="@+id/btn0015"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="上传动画" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
