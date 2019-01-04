@@ -49,7 +49,12 @@ public class NaoBoTuActivity extends AppCompatActivity {
                             }
                         });
                         if (leftTime[0] == 0) {
-                            initNaoBo();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    initNaoBo();
+                                }
+                            });
                             isBreak = false;
                             break;
                         }
