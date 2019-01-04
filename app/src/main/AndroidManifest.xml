@@ -28,7 +28,8 @@
         <activity android:name=".MusicActivity" />
         <activity android:name=".EndTimeActivity" />
         <activity android:name=".NaoBoTuActivity" />
-        <activity android:name=".UpLoadAnimActivity"></activity>
+        <activity android:name=".UpLoadAnimActivity" />
+        <activity android:name=".PrecentActivity"></activity>
     </application>
 
 </manifest>

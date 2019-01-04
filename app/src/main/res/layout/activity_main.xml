@@ -56,46 +56,60 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="线条" />
+
             <Button
                 android:id="@+id/btn0008"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="百分比扇形图" />
+
             <Button
                 android:id="@+id/btn0009"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="百分比扇形图02" />
+
             <Button
                 android:id="@+id/btn0010"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="红包雨" />
+
             <Button
                 android:id="@+id/btn0011"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="旋转动画" />
+
             <Button
                 android:id="@+id/btn0012"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="音乐播放动画" />
+
             <Button
                 android:id="@+id/btn0013"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="倒计时动画" />
+
             <Button
                 android:id="@+id/btn0014"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="脑波动画" />
+
             <Button
                 android:id="@+id/btn0015"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="上传动画" />
+
+            <Button
+                android:id="@+id/btn0016"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="百分比圆圈" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
