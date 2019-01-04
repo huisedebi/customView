@@ -29,23 +29,39 @@ public class NaoBoTuActivity extends AppCompatActivity {
         textYouNaoDis = (TextView) findViewById(R.id.textYouNaoDis);
         initNaoBo();
         final int[] leftTime = {120000};
-        final int cut =100;
+        final int cut = 100;
+        final int[] left = {512};
+        final int[] right = {512};
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 while (isBreak) {
                     try {
                         Thread.sleep(cut);
-                        leftTime[0] = leftTime[0]-cut;
+                        leftTime[0] = leftTime[0] - cut;
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                if (leftTime[0]%1000==0){
-                                    leftTime(leftTime[0]/1000);
+                                if (leftTime[0] % 1000 == 0) {
+                                    leftTime(leftTime[0] / 1000);
                                 }
-                                int left = new Random().nextInt(1000);
-                                int right = new Random().nextInt(1000);
-                                setNaoBo(left, right);
+                                int leftSmall = new Random().nextInt(100);
+                                if ((left[0] + leftSmall) > 1000) {
+                                    left[0] = left[0] - leftSmall;
+                                } else if ((left[0] - leftSmall) < 0) {
+                                    left[0] = left[0] + leftSmall;
+                                } else {
+                                    left[0] = left[0] + ((new Random().nextBoolean()) ? (-1 * leftSmall) : (leftSmall));
+                                }
+                                int rightSmall = new Random().nextInt(100);
+                                if ((right[0] + rightSmall) > 1000) {
+                                    right[0] = right[0] - rightSmall;
+                                } else if ((right[0] - rightSmall) < 0) {
+                                    right[0] = right[0] + rightSmall;
+                                } else {
+                                    right[0] = right[0] + ((new Random().nextBoolean()) ? (-1 * rightSmall) : (rightSmall));
+                                }
+                                setNaoBo(left[0], right[0]);
                             }
                         });
                         if (leftTime[0] == 0) {
