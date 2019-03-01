@@ -14,7 +14,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
+            <Button
+                android:id="@+id/btn0014"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="脑波动画" />
             <Button
                 android:id="@+id/btn0001"
                 android:layout_width="match_parent"
@@ -38,24 +42,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="波形图03" />
-
-            <Button
-                android:id="@+id/btn0005"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="圆角形状" />
-
-            <Button
-                android:id="@+id/btn0006"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="缺口形状" />
-
-            <Button
-                android:id="@+id/btn0007"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="线条" />
 
             <Button
                 android:id="@+id/btn0008"
@@ -94,12 +80,6 @@
                 android:text="倒计时动画" />
 
             <Button
-                android:id="@+id/btn0014"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="脑波动画" />
-
-            <Button
                 android:id="@+id/btn0015"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,6 +90,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="百分比圆圈" />
+
+            <Button
+                android:id="@+id/btn0005"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="圆角形状" />
+
+            <Button
+                android:id="@+id/btn0006"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="缺口形状" />
+
+            <Button
+                android:id="@+id/btn0007"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="线条" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

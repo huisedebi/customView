@@ -10,6 +10,28 @@
         android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="30dp" />
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_basic1dp_no_button"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"></RelativeLayout>
+
+    <com.zjb.home.boxingtu.view.ConnerView2
+        android:background="#ffffff"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <RelativeLayout
+        android:background="@drawable/shape_basic1dp_no_top"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
     <com.zjb.home.boxingtu.view.ConnerCoupons01View
         android:layout_width="match_parent"
         android:layout_height="50dp" />
