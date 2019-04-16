@@ -67,6 +67,7 @@ public class BoXingTu04 extends View {
             0.83f,
     };
     Path path01 = new Path();
+    Path path02 = new Path();
     private Paint paintText;
     private String[] text = new String[]{
             "",
@@ -111,9 +112,11 @@ public class BoXingTu04 extends View {
             "0.35",
     };
     private Rect rect;
-    private Rect[] rectLeft =new Rect[8];
+    private Rect[] rectLeft = new Rect[8];
     private float quXianPx;
     private float martop;
+    private Paint paintYinYing;
+    private Paint paintZheGai;
 
     public BoXingTu04(Context context) {
         super(context);
@@ -141,6 +144,17 @@ public class BoXingTu04 extends View {
         paintQuXian01.setStrokeCap(Paint.Cap.ROUND);
         paintQuXian01.setStrokeWidth(quXianPx);
 
+        paintYinYing = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintYinYing.setPathEffect(pathEffect);
+        paintYinYing.setStyle(Paint.Style.FILL_AND_STROKE);
+        paintYinYing.setStrokeWidth(quXianPx);
+        paintYinYing.setColor(Color.parseColor("#22508AE4"));
+
+        paintZheGai = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintZheGai.setStyle(Paint.Style.FILL_AND_STROKE);
+        paintZheGai.setStrokeWidth(quXianPx);
+        paintZheGai.setColor(Color.parseColor("#ffffff"));
+
         paintText = new Paint(Paint.ANTI_ALIAS_FLAG);
         paintText.setStyle(Paint.Style.FILL);
         paintText.setTextSize(DpUtils.convertDpToPixel(textSize, context));
@@ -164,21 +178,44 @@ public class BoXingTu04 extends View {
         width = MeasureSpec.getSize(widthMeasureSpec);
         height = MeasureSpec.getSize(heightMeasureSpec);
         widthJianGe = (width - bianJuLeftPx) / numHeng;
-        heightJianGe = (height - bianJuPx-martop) / numShu;
+        heightJianGe = (height - bianJuPx - martop) / numShu;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
+        float dp1 = DpUtils.convertDpToPixel(1, getContext()) * 2;
+        //画灰色横线
         for (int i = 0; i < numShu + 1; i++) {
             if (i == 0) {
-                paintHengXian.setColor(Color.parseColor("#F19444"));
+
             } else {
                 paintHengXian.setColor(Color.parseColor("#CBCBCB"));
+                canvas.drawLine(0 + bianJuLeftPx, height - bianJuPx - heightJianGe * i, width, height - bianJuPx - heightJianGe * i, paintHengXian);
             }
-            canvas.drawLine(0 + bianJuLeftPx, height - bianJuPx - heightJianGe * i, width, height - bianJuPx - heightJianGe * i, paintHengXian);
         }
+        //曲线路径
+        paintQuXian01.setColor(Color.parseColor("#508AE4"));
+        path01.reset();
+        path01.moveTo(widthJianGe / 2 + widthJianGe * 0 + bianJuLeftPx, height - bianJuPx - heightJianGe * numShu * line01[0]);
+        for (int i = 0; i < numHeng - 1; i++) {
+            path01.lineTo(widthJianGe / 2 + widthJianGe * (i + 1) + bianJuLeftPx, height - bianJuPx - heightJianGe * numShu * line01[(i + 1)]);
+        }
+        //画曲线和阴影
+        canvas.save();
+        path02.addPath(path01);
+        path02.lineTo(widthJianGe / 2 + widthJianGe * (numHeng-1) + bianJuLeftPx, height);
+        path02.lineTo(widthJianGe / 2 + widthJianGe * (0) + bianJuLeftPx, height);
+        path02.close();
+        canvas.drawPath(path02, paintYinYing);
+        canvas.drawPath(path01, paintQuXian01);
+        canvas.restore();
+        //画最底部横线
+        paintHengXian.setColor(Color.parseColor("#F19444"));
+        canvas.drawLine(0 + bianJuLeftPx, height - bianJuPx - heightJianGe * 0, width, height - bianJuPx - heightJianGe * 0, paintHengXian);
+        //画遮盖底部
+        canvas.drawRect(widthJianGe / 2 + widthJianGe * (0) + bianJuLeftPx, height-bianJuPx + dp1, widthJianGe / 2 + widthJianGe * (numHeng-1) + bianJuLeftPx, height, paintZheGai);
+        //画底部文字和刻度
         paintHengXian.setColor(Color.parseColor("#F19444"));
         for (int i = 0; i < text.length; i++) {
             if (!TextUtils.isEmpty(text[i])) {
@@ -191,19 +228,10 @@ public class BoXingTu04 extends View {
         float dp5 = DpUtils.convertDpToPixel(5, getContext());
         for (int i = 0; i < textLeft.length; i++) {
             if (!TextUtils.isEmpty(textLeft[i])) {
-                canvas.drawText(textLeft[i], bianJuLeftPx-dp5-rectLeft[i].width(), height -heightJianGe*i-bianJuPx+rectLeft[i].height()/2f, paintText);
+                canvas.drawText(textLeft[i], bianJuLeftPx - dp5 - rectLeft[i].width(), height - heightJianGe * i - bianJuPx + rectLeft[i].height() / 2f, paintText);
             }
         }
-
-        canvas.save();
-        paintQuXian01.setColor(Color.parseColor("#508AE4"));
-        path01.reset();
-        path01.moveTo(widthJianGe / 2 + widthJianGe * 0 + bianJuLeftPx, height - bianJuPx - heightJianGe * numShu * line01[0]);
-        for (int i = 0; i < numHeng - 1; i++) {
-            path01.lineTo(widthJianGe / 2 + widthJianGe * (i + 1) + bianJuLeftPx, height - bianJuPx - heightJianGe * numShu * line01[(i + 1)]);
-        }
-        canvas.drawPath(path01, paintQuXian01);
-        canvas.restore();
+        //画圆
         paintQuXian01.setShadowLayer(0, 0, 0, Color.WHITE);
         paintQuXian01.setStrokeWidth(quXianPx * 3);
         paintQuXian01.setColor(Color.parseColor("#BF3C38"));
@@ -226,6 +254,7 @@ public class BoXingTu04 extends View {
                 canvas.drawPoint(widthJianGe * (i - 0.5f) + bianJuLeftPx, height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1] - quXianPx / 2, paintQuXian01);
             }
         }
+        //画圆心
         paintQuXian01.setStrokeWidth(quXianPx);
         paintQuXian01.setColor(Color.parseColor("#ffffff"));
         for (int i = 1; i < numHeng + 1; i++) {
