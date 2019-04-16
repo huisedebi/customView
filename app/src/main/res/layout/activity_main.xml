@@ -42,6 +42,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="波形图03" />
+            <Button
+                android:id="@+id/btn0017"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="波形图04" />
 
             <Button
                 android:id="@+id/btn0008"

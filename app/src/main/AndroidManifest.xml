@@ -29,7 +29,8 @@
         <activity android:name=".EndTimeActivity" />
         <activity android:name=".NaoBoTuActivity" />
         <activity android:name=".UpLoadAnimActivity" />
-        <activity android:name=".PrecentActivity"></activity>
+        <activity android:name=".PrecentActivity" />
+        <activity android:name=".BoXingTu04Activity"></activity>
     </application>
 
 </manifest>
