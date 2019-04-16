@@ -10,8 +10,6 @@ import android.graphics.PathEffect;
 import android.graphics.Rect;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 
 import com.zjb.home.boxingtu.util.DpUtils;
@@ -35,6 +33,7 @@ public class BoXingTu04 extends View {
     private Paint paintHengXian;
     private Paint paintQuXian01;
     private float bianJuPx;
+    private float bianJuLeftPx;
     private float[] line01 = new float[]{
             0.21f,
             0.38f,
@@ -101,7 +100,18 @@ public class BoXingTu04 extends View {
             "",
             "",
     };
+    private String[] textLeft = new String[]{
+            "0",
+            "0.05",
+            "0.1",
+            "0.15",
+            "0.2",
+            "0.25",
+            "0.3",
+            "0.35",
+    };
     private Rect rect;
+    private Rect[] rectLeft =new Rect[8];
     private float quXianPx;
 
     public BoXingTu04(Context context) {
@@ -138,6 +148,12 @@ public class BoXingTu04 extends View {
         bianJuPx = DpUtils.convertDpToPixel(bianJu, getContext());
         rect = new Rect();
         paintText.getTextBounds(text[0], 0, text[0].length(), rect);
+
+        for (int i = 0; i < rectLeft.length; i++) {
+            rectLeft[i] = new Rect();
+            paintText.getTextBounds(textLeft[i], 0, textLeft[i].length(), rectLeft[i]);
+        }
+        bianJuLeftPx = rectLeft[7].width() + DpUtils.convertDpToPixel(10, getContext());
     }
 
     @Override
@@ -145,7 +161,7 @@ public class BoXingTu04 extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         width = MeasureSpec.getSize(widthMeasureSpec);
         height = MeasureSpec.getSize(heightMeasureSpec);
-        widthJianGe = width / numHeng;
+        widthJianGe = (width - bianJuLeftPx) / numHeng;
         heightJianGe = (height - bianJuPx) / numShu;
     }
 
@@ -153,28 +169,36 @@ public class BoXingTu04 extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        for (int i = 0; i < numShu+1; i++) {
-            if (i==0){
+        for (int i = 0; i < numShu + 1; i++) {
+            if (i == 0) {
                 paintHengXian.setColor(Color.parseColor("#F19444"));
-            }else {
+            } else {
                 paintHengXian.setColor(Color.parseColor("#CBCBCB"));
             }
-            canvas.drawLine(0, height - bianJuPx - heightJianGe * i, width, height - bianJuPx - heightJianGe * i, paintHengXian);
+            canvas.drawLine(0 + bianJuLeftPx, height - bianJuPx - heightJianGe * i, width, height - bianJuPx - heightJianGe * i, paintHengXian);
         }
         paintHengXian.setColor(Color.parseColor("#F19444"));
         for (int i = 0; i < text.length; i++) {
-            if (!TextUtils.isEmpty(text[i])){
-                canvas.drawText(text[i], (widthJianGe - rect.width()) / 2 + widthJianGe * i, height - (bianJuPx - rect.height()) / 2, paintText);
-                canvas.drawLine(widthJianGe / 2 + widthJianGe * (i + 1),height -bianJuPx ,widthJianGe / 2 + widthJianGe * (i + 1),height -bianJuPx+DpUtils.convertDpToPixel(5,getContext()),paintHengXian);
+            if (!TextUtils.isEmpty(text[i])) {
+                canvas.drawText(text[i], (widthJianGe - rect.width()) / 2 + widthJianGe * i + bianJuLeftPx, height - (bianJuPx - rect.height()) / 2, paintText);
+                canvas.drawLine(widthJianGe / 2 + widthJianGe * (i + 1) + bianJuLeftPx, height - bianJuPx, widthJianGe / 2 + widthJianGe * (i + 1) + bianJuLeftPx, height - bianJuPx + DpUtils.convertDpToPixel(5, getContext()), paintHengXian);
+            }
+        }
+        //画竖直文字
+        paintText.setColor(Color.parseColor("#CBCBCB"));
+        float dp5 = DpUtils.convertDpToPixel(5, getContext());
+        for (int i = 0; i < textLeft.length; i++) {
+            if (!TextUtils.isEmpty(textLeft[i])) {
+                canvas.drawText(textLeft[i], bianJuLeftPx-dp5-rectLeft[i].width(), height -heightJianGe*i-bianJuPx+rectLeft[i].height()/2f, paintText);
             }
         }
 
         canvas.save();
         paintQuXian01.setColor(Color.parseColor("#508AE4"));
         path01.reset();
-        path01.moveTo(widthJianGe / 2 + widthJianGe * 0, height - bianJuPx - heightJianGe * numShu * line01[0]);
+        path01.moveTo(widthJianGe / 2 + widthJianGe * 0 + bianJuLeftPx, height - bianJuPx - heightJianGe * numShu * line01[0]);
         for (int i = 0; i < numHeng - 1; i++) {
-            path01.lineTo(widthJianGe / 2 + widthJianGe * (i + 1), height - bianJuPx - heightJianGe * numShu * line01[(i + 1)]);
+            path01.lineTo(widthJianGe / 2 + widthJianGe * (i + 1) + bianJuLeftPx, height - bianJuPx - heightJianGe * numShu * line01[(i + 1)]);
         }
         canvas.drawPath(path01, paintQuXian01);
         canvas.restore();
@@ -185,19 +209,19 @@ public class BoXingTu04 extends View {
             if (i > 1 && i < numHeng) {
                 if (line01[(int) i - 1] > line01[(int) i - 2]) {
                     if (line01[(int) i - 1] > line01[(int) i]) {
-                        canvas.drawPoint(widthJianGe * (i - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1] + quXianPx, paintQuXian01);
+                        canvas.drawPoint(widthJianGe * (i - 0.5f) + bianJuLeftPx, height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1] + quXianPx, paintQuXian01);
                     } else {
-                        canvas.drawPoint(widthJianGe * (i - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1], paintQuXian01);
+                        canvas.drawPoint(widthJianGe * (i - 0.5f) + bianJuLeftPx, height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1], paintQuXian01);
                     }
                 } else {
                     if (line01[(int) i - 1] < line01[(int) i]) {
-                        canvas.drawPoint(widthJianGe * (i - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1] - quXianPx, paintQuXian01);
+                        canvas.drawPoint(widthJianGe * (i - 0.5f) + bianJuLeftPx, height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1] - quXianPx, paintQuXian01);
                     } else {
-                        canvas.drawPoint(widthJianGe * (i - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1] - quXianPx / 2, paintQuXian01);
+                        canvas.drawPoint(widthJianGe * (i - 0.5f) + bianJuLeftPx, height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1] - quXianPx / 2, paintQuXian01);
                     }
                 }
             } else {
-                canvas.drawPoint(widthJianGe * (i - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1] - quXianPx / 2, paintQuXian01);
+                canvas.drawPoint(widthJianGe * (i - 0.5f) + bianJuLeftPx, height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1] - quXianPx / 2, paintQuXian01);
             }
         }
         paintQuXian01.setStrokeWidth(quXianPx);
@@ -206,68 +230,68 @@ public class BoXingTu04 extends View {
             if (i > 1 && i < numHeng) {
                 if (line01[(int) i - 1] > line01[(int) i - 2]) {
                     if (line01[(int) i - 1] > line01[(int) i]) {
-                        canvas.drawPoint(widthJianGe * (i - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1] + quXianPx, paintQuXian01);
+                        canvas.drawPoint(widthJianGe * (i - 0.5f) + bianJuLeftPx, height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1] + quXianPx, paintQuXian01);
                     } else {
-                        canvas.drawPoint(widthJianGe * (i - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1], paintQuXian01);
+                        canvas.drawPoint(widthJianGe * (i - 0.5f) + bianJuLeftPx, height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1], paintQuXian01);
                     }
                 } else {
                     if (line01[(int) i - 1] < line01[(int) i]) {
-                        canvas.drawPoint(widthJianGe * (i - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1] - quXianPx, paintQuXian01);
+                        canvas.drawPoint(widthJianGe * (i - 0.5f) + bianJuLeftPx, height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1] - quXianPx, paintQuXian01);
                     } else {
-                        canvas.drawPoint(widthJianGe * (i - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1] - quXianPx / 2, paintQuXian01);
+                        canvas.drawPoint(widthJianGe * (i - 0.5f) + bianJuLeftPx, height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1] - quXianPx / 2, paintQuXian01);
                     }
                 }
             } else {
-                canvas.drawPoint(widthJianGe * (i - 0.5f), height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1] - quXianPx / 2, paintQuXian01);
+                canvas.drawPoint(widthJianGe * (i - 0.5f) + bianJuLeftPx, height - bianJuPx - heightJianGe * numShu * line01[(int) i - 1] - quXianPx / 2, paintQuXian01);
             }
         }
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                //获取屏幕上点击的坐标
-                float x = event.getX();
-                Log.e("BoXingTu", "BoXingTu--onTouchEvent--" + x);
-                //如果坐标在我们的文字区域内，则将点击的文字改颜色
-                if (x > 0 && x < widthJianGe) {
-                    //点击后，获取坐标代表的单词的含义
-                    xuanZhong = 1;
-                    invalidate();//更新视图
-                    return true;
-                } else if (x > widthJianGe && x < widthJianGe * 2) {
-                    //点击后，获取坐标代表的单词的含义
-                    xuanZhong = 2;
-                    invalidate();//更新视图
-                } else if (x > widthJianGe * 2 && x < widthJianGe * 3) {
-                    //点击后，获取坐标代表的单词的含义
-                    xuanZhong = 3;
-                    invalidate();//更新视图
-                } else if (x > widthJianGe * 3 && x < widthJianGe * 4) {
-                    //点击后，获取坐标代表的单词的含义
-                    xuanZhong = 4;
-                    invalidate();//更新视图
-                } else if (x > widthJianGe * 4 && x < widthJianGe * 5) {
-                    //点击后，获取坐标代表的单词的含义
-                    xuanZhong = 5;
-                    invalidate();//更新视图
-                } else if (x > widthJianGe * 5 && x < widthJianGe * 6) {
-                    //点击后，获取坐标代表的单词的含义
-                    xuanZhong = 6;
-                    invalidate();//更新视图
-                } else if (x > widthJianGe * 6 && x < widthJianGe * 7) {
-                    //点击后，获取坐标代表的单词的含义
-                    xuanZhong = 7;
-                    invalidate();//更新视图
-                }
-                break;
-            default:
-                break;
-        }
-        //这句话不要修改
-        return super.onTouchEvent(event);
-    }
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        switch (event.getAction()) {
+//            case MotionEvent.ACTION_DOWN:
+//                //获取屏幕上点击的坐标
+//                float x = event.getX();
+//                Log.e("BoXingTu", "BoXingTu--onTouchEvent--" + x);
+//                //如果坐标在我们的文字区域内，则将点击的文字改颜色
+//                if (x > 0 && x < widthJianGe) {
+//                    //点击后，获取坐标代表的单词的含义
+//                    xuanZhong = 1;
+//                    invalidate();//更新视图
+//                    return true;
+//                } else if (x > widthJianGe && x < widthJianGe * 2) {
+//                    //点击后，获取坐标代表的单词的含义
+//                    xuanZhong = 2;
+//                    invalidate();//更新视图
+//                } else if (x > widthJianGe * 2 && x < widthJianGe * 3) {
+//                    //点击后，获取坐标代表的单词的含义
+//                    xuanZhong = 3;
+//                    invalidate();//更新视图
+//                } else if (x > widthJianGe * 3 && x < widthJianGe * 4) {
+//                    //点击后，获取坐标代表的单词的含义
+//                    xuanZhong = 4;
+//                    invalidate();//更新视图
+//                } else if (x > widthJianGe * 4 && x < widthJianGe * 5) {
+//                    //点击后，获取坐标代表的单词的含义
+//                    xuanZhong = 5;
+//                    invalidate();//更新视图
+//                } else if (x > widthJianGe * 5 && x < widthJianGe * 6) {
+//                    //点击后，获取坐标代表的单词的含义
+//                    xuanZhong = 6;
+//                    invalidate();//更新视图
+//                } else if (x > widthJianGe * 6 && x < widthJianGe * 7) {
+//                    //点击后，获取坐标代表的单词的含义
+//                    xuanZhong = 7;
+//                    invalidate();//更新视图
+//                }
+//                break;
+//            default:
+//                break;
+//        }
+//        //这句话不要修改
+//        return super.onTouchEvent(event);
+//    }
 
     public void setValue01(int i, float value) {
         line01[i] = value;
