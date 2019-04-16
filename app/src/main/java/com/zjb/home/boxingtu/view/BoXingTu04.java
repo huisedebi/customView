@@ -21,7 +21,7 @@ import com.zjb.home.boxingtu.util.DpUtils;
  */
 public class BoXingTu04 extends View {
 
-    private int numHeng = 7;
+    private int numHeng = 30;
     private int numShu = 5;
     private int width;
     private int height;
@@ -43,17 +43,63 @@ public class BoXingTu04 extends View {
             0.56f,
             0.52f,
             0.63f,
+            0.21f,
+            0.38f,
+            0.48f,
+            0.43f,
+            0.56f,
+            0.52f,
+            0.63f,
+            0.21f,
+            0.38f,
+            0.48f,
+            0.43f,
+            0.56f,
+            0.52f,
+            0.63f,
+            0.21f,
+            0.38f,
+            0.48f,
+            0.43f,
+            0.56f,
+            0.52f,
+            0.63f,
+            0.33f,
+            0.83f,
     };
     Path path01 = new Path();
     private Paint paintText;
     private String[] text = new String[]{
-            "08-28",
-            "08-29",
+            "",
+            "",
             "08-30",
-            "08-31",
-            "09-01",
-            "09-02",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "08-29",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "08-28",
+            "",
+            "",
+            "",
+            "",
+            "",
             "09-03",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "09-02",
+            "",
+            "",
+            "",
     };
     private Rect rect;
     private float quXianPx;
@@ -77,7 +123,7 @@ public class BoXingTu04 extends View {
 
         quXianPx = DpUtils.convertDpToPixel(quXian, getContext());
 
-        PathEffect pathEffect = new CornerPathEffect(DpUtils.convertDpToPixel(radius,context));
+        PathEffect pathEffect = new CornerPathEffect(DpUtils.convertDpToPixel(radius, context));
         paintQuXian01 = new Paint(Paint.ANTI_ALIAS_FLAG);
         paintQuXian01.setPathEffect(pathEffect);
         paintQuXian01.setStyle(Paint.Style.STROKE);
@@ -132,7 +178,7 @@ public class BoXingTu04 extends View {
         paintQuXian01.setShadowLayer(0, 0, 0, Color.WHITE);
         paintQuXian01.setStrokeWidth(quXianPx * 3);
         paintQuXian01.setColor(Color.parseColor("#BF3C38"));
-        for (int i = 1; i < numHeng+1; i++) {
+        for (int i = 1; i < numHeng + 1; i++) {
             if (i > 1 && i < numHeng) {
                 if (line01[(int) i - 1] > line01[(int) i - 2]) {
                     if (line01[(int) i - 1] > line01[(int) i]) {
@@ -153,7 +199,7 @@ public class BoXingTu04 extends View {
         }
         paintQuXian01.setStrokeWidth(quXianPx);
         paintQuXian01.setColor(Color.parseColor("#ffffff"));
-        for (int i = 1; i < numHeng+1; i++) {
+        for (int i = 1; i < numHeng + 1; i++) {
             if (i > 1 && i < numHeng) {
                 if (line01[(int) i - 1] > line01[(int) i - 2]) {
                     if (line01[(int) i - 1] > line01[(int) i]) {
