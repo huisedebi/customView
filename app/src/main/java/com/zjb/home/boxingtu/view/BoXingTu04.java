@@ -38,7 +38,7 @@ public class BoXingTu04 extends View {
             0.21f,
             0.38f,
             0.48f,
-            0.43f,
+            1.00f,
             0.56f,
             0.52f,
             0.63f,
@@ -113,6 +113,7 @@ public class BoXingTu04 extends View {
     private Rect rect;
     private Rect[] rectLeft =new Rect[8];
     private float quXianPx;
+    private float martop;
 
     public BoXingTu04(Context context) {
         super(context);
@@ -154,6 +155,7 @@ public class BoXingTu04 extends View {
             paintText.getTextBounds(textLeft[i], 0, textLeft[i].length(), rectLeft[i]);
         }
         bianJuLeftPx = rectLeft[7].width() + DpUtils.convertDpToPixel(10, getContext());
+        martop = rectLeft[7].height();
     }
 
     @Override
@@ -162,7 +164,7 @@ public class BoXingTu04 extends View {
         width = MeasureSpec.getSize(widthMeasureSpec);
         height = MeasureSpec.getSize(heightMeasureSpec);
         widthJianGe = (width - bianJuLeftPx) / numHeng;
-        heightJianGe = (height - bianJuPx) / numShu;
+        heightJianGe = (height - bianJuPx-martop) / numShu;
     }
 
     @Override

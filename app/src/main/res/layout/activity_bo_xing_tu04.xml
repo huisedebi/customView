@@ -4,12 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".BoXingTu04Activity">
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="18dp"
+            android:text="近30日交易金额走势"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/text0001"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:layout_below="@+id/text0001"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="04-16"
+            android:id="@+id/textDate"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="0.65元"
+            android:textSize="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignBaseline="@+id/textDate"
+            android:layout_marginRight="20dp"
+            android:textColor="#1787ed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
     <com.zjb.home.boxingtu.view.BoXingTu04
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="15dp"
         android:id="@+id/boxingtu"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="60dp"
-        android:paddingTop="20dp" />
+        android:layout_height="300dp"/>
 </LinearLayout>
