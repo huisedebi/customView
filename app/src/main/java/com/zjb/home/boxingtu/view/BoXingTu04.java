@@ -8,12 +8,12 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathEffect;
 import android.graphics.Rect;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.zjb.home.boxingtu.R;
 import com.zjb.home.boxingtu.util.DpUtils;
 
 /**
@@ -22,7 +22,7 @@ import com.zjb.home.boxingtu.util.DpUtils;
 public class BoXingTu04 extends View {
 
     private int numHeng = 30;
-    private int numShu = 5;
+    private int numShu = 7;
     private int width;
     private int height;
     private float xuanZhong = 4;//加亮的位置
@@ -52,14 +52,14 @@ public class BoXingTu04 extends View {
             0.63f,
             0.21f,
             0.38f,
-            0.48f,
-            0.43f,
+            0.18f,
+            0.03f,
             0.56f,
             0.52f,
             0.63f,
             0.21f,
             0.38f,
-            0.48f,
+            0.98f,
             0.43f,
             0.56f,
             0.52f,
@@ -118,7 +118,7 @@ public class BoXingTu04 extends View {
         setLayerType(LAYER_TYPE_SOFTWARE, null);
 
         paintHengXian = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paintHengXian.setColor(getResources().getColor(R.color.hengxian));
+        paintHengXian.setColor(Color.parseColor("#CBCBCB"));
         paintHengXian.setStrokeWidth(DpUtils.convertDpToPixel(1, getContext()));
 
         quXianPx = DpUtils.convertDpToPixel(quXian, getContext());
@@ -133,7 +133,7 @@ public class BoXingTu04 extends View {
         paintText = new Paint(Paint.ANTI_ALIAS_FLAG);
         paintText.setStyle(Paint.Style.FILL);
         paintText.setTextSize(DpUtils.convertDpToPixel(textSize, context));
-        paintText.setColor(getResources().getColor(R.color.textColor));
+        paintText.setColor(Color.parseColor("#F19444"));
 
         bianJuPx = DpUtils.convertDpToPixel(bianJu, getContext());
         rect = new Rect();
@@ -153,17 +153,20 @@ public class BoXingTu04 extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        for (int i = 0; i < numShu; i++) {
+        for (int i = 0; i < numShu+1; i++) {
+            if (i==0){
+                paintHengXian.setColor(Color.parseColor("#F19444"));
+            }else {
+                paintHengXian.setColor(Color.parseColor("#CBCBCB"));
+            }
             canvas.drawLine(0, height - bianJuPx - heightJianGe * i, width, height - bianJuPx - heightJianGe * i, paintHengXian);
         }
-
+        paintHengXian.setColor(Color.parseColor("#F19444"));
         for (int i = 0; i < text.length; i++) {
-            if (i == xuanZhong - 1) {
-                paintText.setColor(getResources().getColor(R.color.textColorBlack));
-            } else {
-                paintText.setColor(getResources().getColor(R.color.textColor));
+            if (!TextUtils.isEmpty(text[i])){
+                canvas.drawText(text[i], (widthJianGe - rect.width()) / 2 + widthJianGe * i, height - (bianJuPx - rect.height()) / 2, paintText);
+                canvas.drawLine(widthJianGe / 2 + widthJianGe * (i + 1),height -bianJuPx ,widthJianGe / 2 + widthJianGe * (i + 1),height -bianJuPx+DpUtils.convertDpToPixel(5,getContext()),paintHengXian);
             }
-            canvas.drawText(text[i], (widthJianGe - rect.width()) / 2 + widthJianGe * i, height - (bianJuPx - rect.height()) / 2, paintText);
         }
 
         canvas.save();

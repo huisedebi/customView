@@ -9,7 +9,7 @@
     <com.zjb.home.boxingtu.view.BoXingTu04
         android:id="@+id/boxingtu"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="300dp"
         android:layout_marginTop="60dp"
         android:paddingTop="20dp" />
 </LinearLayout>
