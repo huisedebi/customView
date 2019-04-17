@@ -168,7 +168,7 @@ public class BoXingTu04 extends View {
             rectLeft[i] = new Rect();
             paintText.getTextBounds(textLeft[i], 0, textLeft[i].length(), rectLeft[i]);
         }
-        bianJuLeftPx = rectLeft[7].width() + DpUtils.convertDpToPixel(10, getContext());
+        bianJuLeftPx = rectLeft[7].width() + DpUtils.convertDpToPixel(15, getContext());
         martop = rectLeft[7].height();
     }
 
@@ -185,15 +185,18 @@ public class BoXingTu04 extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         float dp1 = DpUtils.convertDpToPixel(1, getContext()) * 2;
+        float dp5 = DpUtils.convertDpToPixel(5, getContext());
         //画灰色横线
         for (int i = 0; i < numShu + 1; i++) {
             if (i == 0) {
 
             } else {
                 paintHengXian.setColor(Color.parseColor("#CBCBCB"));
-                canvas.drawLine(0 + bianJuLeftPx, height - bianJuPx - heightJianGe * i, width, height - bianJuPx - heightJianGe * i, paintHengXian);
+                canvas.drawLine(0 + bianJuLeftPx-dp5, height - bianJuPx - heightJianGe * i, width, height - bianJuPx - heightJianGe * i, paintHengXian);
             }
         }
+        //画竖直线
+        canvas.drawLine(bianJuLeftPx,height-bianJuPx,bianJuLeftPx,height - bianJuPx - heightJianGe * numShu,paintHengXian);
         //曲线路径
         paintQuXian01.setColor(Color.parseColor("#508AE4"));
         path01.reset();
@@ -212,7 +215,7 @@ public class BoXingTu04 extends View {
         canvas.restore();
         //画最底部横线
         paintHengXian.setColor(Color.parseColor("#F19444"));
-        canvas.drawLine(0 + bianJuLeftPx, height - bianJuPx - heightJianGe * 0, width, height - bianJuPx - heightJianGe * 0, paintHengXian);
+        canvas.drawLine(0 + bianJuLeftPx-dp5, height - bianJuPx - heightJianGe * 0, width, height - bianJuPx - heightJianGe * 0, paintHengXian);
         //画遮盖底部
         canvas.drawRect(widthJianGe / 2 + widthJianGe * (0) + bianJuLeftPx, height-bianJuPx + dp1, widthJianGe / 2 + widthJianGe * (numHeng-1) + bianJuLeftPx, height, paintZheGai);
         //画底部文字和刻度
@@ -225,10 +228,9 @@ public class BoXingTu04 extends View {
         }
         //画竖直文字
         paintText.setColor(Color.parseColor("#CBCBCB"));
-        float dp5 = DpUtils.convertDpToPixel(5, getContext());
         for (int i = 0; i < textLeft.length; i++) {
             if (!TextUtils.isEmpty(textLeft[i])) {
-                canvas.drawText(textLeft[i], bianJuLeftPx - dp5 - rectLeft[i].width(), height - heightJianGe * i - bianJuPx + rectLeft[i].height() / 2f, paintText);
+                canvas.drawText(textLeft[i], bianJuLeftPx - dp5*2 - rectLeft[i].width(), height - heightJianGe * i - bianJuPx + rectLeft[i].height() / 2f, paintText);
             }
         }
         //画圆
