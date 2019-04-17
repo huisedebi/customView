@@ -30,7 +30,8 @@
         <activity android:name=".NaoBoTuActivity" />
         <activity android:name=".UpLoadAnimActivity" />
         <activity android:name=".PrecentActivity" />
-        <activity android:name=".BoXingTu04Activity"></activity>
+        <activity android:name=".BoXingTu04Activity" />
+        <activity android:name=".ZhuZhuangTu01Activity"></activity>
     </application>
 
 </manifest>
