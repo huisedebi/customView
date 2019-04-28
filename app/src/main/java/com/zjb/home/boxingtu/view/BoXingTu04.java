@@ -10,6 +10,7 @@ import android.graphics.PathEffect;
 import android.graphics.Rect;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.zjb.home.boxingtu.util.DpUtils;
@@ -117,6 +118,18 @@ public class BoXingTu04 extends View {
     private float martop;
     private Paint paintYinYing;
     private Paint paintZheGai;
+    private boolean isPress;
+    private int position;
+
+    public interface OnGetPositionListener{
+        void getPosiotion(int position);
+    }
+
+    OnGetPositionListener onGetPositionListener;
+
+    public void setOnGetPositionListener(OnGetPositionListener onGetPositionListener) {
+        this.onGetPositionListener = onGetPositionListener;
+    }
 
     public BoXingTu04(Context context) {
         super(context);
@@ -192,11 +205,11 @@ public class BoXingTu04 extends View {
 
             } else {
                 paintHengXian.setColor(Color.parseColor("#CBCBCB"));
-                canvas.drawLine(0 + bianJuLeftPx-dp5, height - bianJuPx - heightJianGe * i, width, height - bianJuPx - heightJianGe * i, paintHengXian);
+                canvas.drawLine(0 + bianJuLeftPx - dp5, height - bianJuPx - heightJianGe * i, width, height - bianJuPx - heightJianGe * i, paintHengXian);
             }
         }
         //画竖直线
-        canvas.drawLine(bianJuLeftPx,height-bianJuPx,bianJuLeftPx,height - bianJuPx - heightJianGe * numShu,paintHengXian);
+        canvas.drawLine(bianJuLeftPx, height - bianJuPx, bianJuLeftPx, height - bianJuPx - heightJianGe * numShu, paintHengXian);
         //曲线路径
         paintQuXian01.setColor(Color.parseColor("#508AE4"));
         path01.reset();
@@ -207,7 +220,7 @@ public class BoXingTu04 extends View {
         //画曲线和阴影
         canvas.save();
         path02.addPath(path01);
-        path02.lineTo(widthJianGe / 2 + widthJianGe * (numHeng-1) + bianJuLeftPx, height);
+        path02.lineTo(widthJianGe / 2 + widthJianGe * (numHeng - 1) + bianJuLeftPx, height);
         path02.lineTo(widthJianGe / 2 + widthJianGe * (0) + bianJuLeftPx, height);
         path02.close();
         canvas.drawPath(path02, paintYinYing);
@@ -215,9 +228,9 @@ public class BoXingTu04 extends View {
         canvas.restore();
         //画最底部横线
         paintHengXian.setColor(Color.parseColor("#F19444"));
-        canvas.drawLine(0 + bianJuLeftPx-dp5, height - bianJuPx - heightJianGe * 0, width, height - bianJuPx - heightJianGe * 0, paintHengXian);
+        canvas.drawLine(0 + bianJuLeftPx - dp5, height - bianJuPx - heightJianGe * 0, width, height - bianJuPx - heightJianGe * 0, paintHengXian);
         //画遮盖底部
-        canvas.drawRect(widthJianGe / 2 + widthJianGe * (0) + bianJuLeftPx, height-bianJuPx + dp1, widthJianGe / 2 + widthJianGe * (numHeng-1) + bianJuLeftPx, height, paintZheGai);
+        canvas.drawRect(widthJianGe / 2 + widthJianGe * (0) + bianJuLeftPx, height - bianJuPx + dp1, widthJianGe / 2 + widthJianGe * (numHeng - 1) + bianJuLeftPx, height, paintZheGai);
         //画底部文字和刻度
         paintHengXian.setColor(Color.parseColor("#F19444"));
         for (int i = 0; i < text.length; i++) {
@@ -225,12 +238,17 @@ public class BoXingTu04 extends View {
                 canvas.drawText(text[i], (widthJianGe - rect.width()) / 2 + widthJianGe * i + bianJuLeftPx, height - (bianJuPx - rect.height()) / 2, paintText);
                 canvas.drawLine(widthJianGe / 2 + widthJianGe * (i + 1) + bianJuLeftPx, height - bianJuPx, widthJianGe / 2 + widthJianGe * (i + 1) + bianJuLeftPx, height - bianJuPx + DpUtils.convertDpToPixel(5, getContext()), paintHengXian);
             }
+            if (isPress) {
+                if (position == i) {
+                    canvas.drawLine(widthJianGe / 2 + widthJianGe * (i) + bianJuLeftPx, height - bianJuPx, widthJianGe / 2 + widthJianGe * (i) + bianJuLeftPx, 0, paintHengXian);
+                }
+            }
         }
         //画竖直文字
         paintText.setColor(Color.parseColor("#CBCBCB"));
         for (int i = 0; i < textLeft.length; i++) {
             if (!TextUtils.isEmpty(textLeft[i])) {
-                canvas.drawText(textLeft[i], bianJuLeftPx - dp5*2 - rectLeft[i].width(), height - heightJianGe * i - bianJuPx + rectLeft[i].height() / 2f, paintText);
+                canvas.drawText(textLeft[i], bianJuLeftPx - dp5 * 2 - rectLeft[i].width(), height - heightJianGe * i - bianJuPx + rectLeft[i].height() / 2f, paintText);
             }
         }
         //画圆
@@ -280,51 +298,48 @@ public class BoXingTu04 extends View {
         }
     }
 
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//        switch (event.getAction()) {
-//            case MotionEvent.ACTION_DOWN:
-//                //获取屏幕上点击的坐标
-//                float x = event.getX();
-//                Log.e("BoXingTu", "BoXingTu--onTouchEvent--" + x);
-//                //如果坐标在我们的文字区域内，则将点击的文字改颜色
-//                if (x > 0 && x < widthJianGe) {
-//                    //点击后，获取坐标代表的单词的含义
-//                    xuanZhong = 1;
-//                    invalidate();//更新视图
-//                    return true;
-//                } else if (x > widthJianGe && x < widthJianGe * 2) {
-//                    //点击后，获取坐标代表的单词的含义
-//                    xuanZhong = 2;
-//                    invalidate();//更新视图
-//                } else if (x > widthJianGe * 2 && x < widthJianGe * 3) {
-//                    //点击后，获取坐标代表的单词的含义
-//                    xuanZhong = 3;
-//                    invalidate();//更新视图
-//                } else if (x > widthJianGe * 3 && x < widthJianGe * 4) {
-//                    //点击后，获取坐标代表的单词的含义
-//                    xuanZhong = 4;
-//                    invalidate();//更新视图
-//                } else if (x > widthJianGe * 4 && x < widthJianGe * 5) {
-//                    //点击后，获取坐标代表的单词的含义
-//                    xuanZhong = 5;
-//                    invalidate();//更新视图
-//                } else if (x > widthJianGe * 5 && x < widthJianGe * 6) {
-//                    //点击后，获取坐标代表的单词的含义
-//                    xuanZhong = 6;
-//                    invalidate();//更新视图
-//                } else if (x > widthJianGe * 6 && x < widthJianGe * 7) {
-//                    //点击后，获取坐标代表的单词的含义
-//                    xuanZhong = 7;
-//                    invalidate();//更新视图
-//                }
-//                break;
-//            default:
-//                break;
-//        }
-//        //这句话不要修改
-//        return super.onTouchEvent(event);
-//    }
+    public int getPosition(float x) {
+        for (int i = 0; i < text.length; i++) {
+            if (x > widthJianGe / 2f + widthJianGe * (i) + bianJuLeftPx - widthJianGe / 2f && x < widthJianGe / 2f + widthJianGe * (i) + bianJuLeftPx + widthJianGe / 2f) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                isPress = true;
+                float x = event.getX();
+                position = getPosition(x);
+                invalidate();
+                if (onGetPositionListener!=null){
+                    onGetPositionListener.getPosiotion(position);
+                }
+                return true;
+            case MotionEvent.ACTION_MOVE:
+                float x1 = event.getX();
+                position = getPosition(x1);
+                invalidate();
+                if (onGetPositionListener!=null){
+                    onGetPositionListener.getPosiotion(position);
+                }
+                return true;
+            case MotionEvent.ACTION_UP:
+                isPress = false;
+                invalidate();
+                if (onGetPositionListener!=null){
+                    onGetPositionListener.getPosiotion(-1);
+                }
+                return true;
+            default:
+                break;
+        }
+        //这句话不要修改
+        return super.onTouchEvent(event);
+    }
 
     public void setValue01(int i, float value) {
         line01[i] = value;
