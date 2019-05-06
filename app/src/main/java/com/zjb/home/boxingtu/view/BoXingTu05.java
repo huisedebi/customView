@@ -102,7 +102,6 @@ public class BoXingTu05 extends View {
         paintCircle.setStrokeWidth(quXianPx * 4);
         paintCircle.setColor(Color.parseColor("#4F81EE"));
 
-
         paintpoint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paintpoint.setStyle(Paint.Style.STROKE);
         paintpoint.setStrokeCap(Paint.Cap.ROUND);
