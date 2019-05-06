@@ -8,6 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".BoXingTu05Activity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +32,7 @@
         <activity android:name=".UpLoadAnimActivity" />
         <activity android:name=".PrecentActivity" />
         <activity android:name=".BoXingTu04Activity" />
-        <activity android:name=".ZhuZhuangTu01Activity"></activity>
+        <activity android:name=".ZhuZhuangTu01Activity" />
     </application>
 
 </manifest>
