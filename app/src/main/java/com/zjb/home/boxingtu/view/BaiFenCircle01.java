@@ -48,7 +48,7 @@ public class BaiFenCircle01 extends View {
                 dp_px(3),
                 0,
                 0,
-                Color.parseColor("#ff4F86FF"));
+                Color.parseColor("#aaaaaa"));
 
         paintCircle01 = new Paint(Paint.ANTI_ALIAS_FLAG);
         paintCircle01.setStyle(Paint.Style.STROKE);
@@ -59,7 +59,7 @@ public class BaiFenCircle01 extends View {
                 dp_px(3),
                 0,
                 0,
-                Color.parseColor("#ffFF7800"));
+                Color.parseColor("#aaaaaa"));
 
     }
 
