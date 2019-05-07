@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn0019:
                 intent.setClass(this, BoXingTu05Activity.class);
                 startActivity(intent);
+                break;
             case R.id.btn0020:
                 intent.setClass(this, Precent01Activity.class);
                 startActivity(intent);

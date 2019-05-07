@@ -1,5 +1,7 @@
 package com.zjb.home.boxingtu.view;
 
+import android.animation.ObjectAnimator;
+import android.animation.TypeEvaluator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,11 +11,13 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathEffect;
 import android.graphics.Rect;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.zjb.home.boxingtu.util.DpUtils;
+import com.zjb.home.boxingtu.util.LogUtil;
 
 /**
  * Created by Administrator on 2017/9/27.
@@ -38,14 +42,14 @@ public class BoXingTu05 extends View {
     private float paddingTop = 0;
     private float bianJuPx;
     private float[] line01 = new float[]{
-            0.61f,
-            0.38f,
-            0.88f,
-            0.33f,
-            0.56f,
-            0.22f,
-            1.00f,
-            0.13f,
+            0f,
+            0f,
+            0f,
+            0f,
+            0f,
+            0f,
+            0f,
+            0f,
     };
     Path path01 = new Path();
     private Paint paintText;
@@ -269,6 +273,31 @@ public class BoXingTu05 extends View {
     public void setValue01(int i, float value) {
         line01[i] = value;
         invalidate();
+    }
+
+    public void setBaiFenBiDuAnim(float[] baiFenBiDu) {
+        ObjectAnimator animator = ObjectAnimator.ofObject(this, "Line", new HsvEvaluator(), line01, baiFenBiDu);
+        animator.setDuration(3000);
+        animator.setInterpolator(new FastOutSlowInInterpolator());
+        animator.start();
+    }
+
+    public void setLine(float[] line01) {
+        this.line01 = line01;
+        invalidate();
+    }
+
+    // 自定义 HslEvaluator
+    private class HsvEvaluator implements TypeEvaluator<float[]> {
+        float[] outValue = new float[8];
+        @Override
+        public float[] evaluate(float fraction, float[] startValue, float[] endValue) {
+            for (int i = 0; i < startValue.length; i++) {
+                outValue[i] = startValue[i] + (endValue[i] - startValue[i]) * fraction;
+                LogUtil.LogShitou("HsvEvaluator--evaluate", ""+outValue[i]);
+            }
+            return outValue;
+        }
     }
 
 }
