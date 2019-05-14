@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Precent03Activity">
+
+    <com.zjb.home.boxingtu.view.WaiMaiCircle02
+        android:background="#ffffff"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/waiMaiCircle"
+        android:layout_width="136dp"
+        android:layout_height="136dp"
+        android:layout_marginTop="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+</LinearLayout>

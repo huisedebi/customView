@@ -14,11 +14,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <Button
                 android:id="@+id/btn0014"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="脑波动画" />
+
             <Button
                 android:id="@+id/btn0001"
                 android:layout_width="match_parent"
@@ -42,16 +44,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="波形图03" />
+
             <Button
                 android:id="@+id/btn0017"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="波形图04" />
+
             <Button
                 android:id="@+id/btn0019"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="波形图05" />
+
             <Button
                 android:id="@+id/btn0018"
                 android:layout_width="match_parent"
@@ -69,6 +74,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="百分比扇形图02" />
+
+            <Button
+                android:id="@+id/btn0021"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="百分比扇形图03" />
+
+            <Button
+                android:id="@+id/btn0016"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="百分比圆圈" />
+
+            <Button
+                android:id="@+id/btn0020"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="百分比圆圈01" />
 
             <Button
                 android:id="@+id/btn0010"
@@ -100,16 +123,6 @@
                 android:layout_height="wrap_content"
                 android:text="上传动画" />
 
-            <Button
-                android:id="@+id/btn0016"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="百分比圆圈" />
-            <Button
-                android:id="@+id/btn0020"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="百分比圆圈01" />
 
             <Button
                 android:id="@+id/btn0005"

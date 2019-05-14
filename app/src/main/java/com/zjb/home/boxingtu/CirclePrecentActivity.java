@@ -16,17 +16,7 @@ public class CirclePrecentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_circle_precent);
         final WaiMaiCircle01 waiMaiCircle = (WaiMaiCircle01) findViewById(R.id.waiMaiCircle);
 
-
-
-
-
-
         waiMaiCircle.setBaiFenBiDu01(120);
-
-
-
-
-
 
         final SeekBar seekBarBaiFenBi01 = (SeekBar) findViewById(R.id.seekBarBaiFenBi01);
         final SeekBar seekBarBaiFenBi02 = (SeekBar) findViewById(R.id.seekBarBaiFenBi02);
