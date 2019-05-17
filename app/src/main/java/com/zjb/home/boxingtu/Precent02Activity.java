@@ -26,26 +26,30 @@ public class Precent02Activity extends AppCompatActivity {
         int pre02;
         int pre03;
         int pre04;
-        if (360-pre01 == 0) {
+        if (360 - pre01 == 0) {
             pre02 = 0;
             pre03 = 0;
             pre04 = 0;
-        }else {
+        } else {
             pre02 = new Random().nextInt(360 - pre01) + 1;
-            if (360-pre01-pre02==0){
-                pre03=0;
-                pre04=0;
-            }else {
-                pre03 = new Random().nextInt(360 - pre01-pre02) + 1;
-                if (360-pre01-pre02-pre03==0){
-                    pre04=0;
-                }else {
-                    pre04 = 360 - pre01-pre02-pre03;
+            if (360 - pre01 - pre02 == 0) {
+                pre03 = 0;
+                pre04 = 0;
+            } else {
+                pre03 = new Random().nextInt(360 - pre01 - pre02) + 1;
+                if (360 - pre01 - pre02 - pre03 == 0) {
+                    pre04 = 0;
+                } else {
+                    pre04 = 360 - pre01 - pre02 - pre03;
                 }
             }
         }
 
-        LogUtil.LogShitou("Precent02Activity--suiJi", ""+pre01+" "+pre02+" "+pre03+" "+pre04);
-        precentCircle.setBaiFenBiAnim(pre01,pre02,pre03,pre04);
+        LogUtil.LogShitou("Precent02Activity--suiJi", "" + pre01 + " " + pre02 + " " + pre03 + " " + pre04);
+        precentCircle.setBaiFenBiAnim(pre01, pre02, pre03, pre04);
+    }
+
+    public void ling(View v) {
+        precentCircle.setBaiFenBiAnim(0, 0, 0, 0);
     }
 }
