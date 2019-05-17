@@ -82,6 +82,12 @@
                 android:text="百分比扇形图03" />
 
             <Button
+                android:id="@+id/btn0022"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="百分比扇形图04" />
+
+            <Button
                 android:id="@+id/btn0016"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
