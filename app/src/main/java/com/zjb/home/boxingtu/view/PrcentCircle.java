@@ -255,7 +255,6 @@ public class PrcentCircle extends View {
         } else {
             baiFenBi05 = 0;
         }
-        index = indexX;
 
         ObjectAnimator animator = ObjectAnimator.ofObject(this,
                 "baiFenBi",
@@ -266,6 +265,7 @@ public class PrcentCircle extends View {
         animator.setDuration(800);
         animator.setInterpolator(new LinearInterpolator());
 
+        index = indexX;
 
         ObjectAnimator animator4 = ObjectAnimator.ofObject(
                 this,
@@ -292,10 +292,10 @@ public class PrcentCircle extends View {
 
         @Override
         public BaiFenBi evaluate(float fraction, BaiFenBi startValue, BaiFenBi endValue) {
-            baiFenBi.setBaiFenBi01((int) (startValue.getBaiFenBi01() + (endValue.getBaiFenBi01() - startValue.getBaiFenBi01()) * fraction));
-            baiFenBi.setBaiFenBi02((int) (startValue.getBaiFenBi02() + (endValue.getBaiFenBi02() - startValue.getBaiFenBi02()) * fraction));
-            baiFenBi.setBaiFenBi03((int) (startValue.getBaiFenBi03() + (endValue.getBaiFenBi03() - startValue.getBaiFenBi03()) * fraction));
-            baiFenBi.setBaiFenBi05((int) (startValue.getBaiFenBi05() + (endValue.getBaiFenBi05() - startValue.getBaiFenBi05()) * fraction));
+            baiFenBi.setBaiFenBi01((startValue.getBaiFenBi01() + (endValue.getBaiFenBi01() - startValue.getBaiFenBi01()) * fraction));
+            baiFenBi.setBaiFenBi02((startValue.getBaiFenBi02() + (endValue.getBaiFenBi02() - startValue.getBaiFenBi02()) * fraction));
+            baiFenBi.setBaiFenBi03((startValue.getBaiFenBi03() + (endValue.getBaiFenBi03() - startValue.getBaiFenBi03()) * fraction));
+            baiFenBi.setBaiFenBi05((startValue.getBaiFenBi05() + (endValue.getBaiFenBi05() - startValue.getBaiFenBi05()) * fraction));
             baiFenBi.setCircleStroke01((startValue.getCircleStroke01() + (endValue.getCircleStroke01() - startValue.getCircleStroke01()) * fraction));
             baiFenBi.setCircleStroke02((startValue.getCircleStroke02() + (endValue.getCircleStroke02() - startValue.getCircleStroke02()) * fraction));
             baiFenBi.setCircleStroke03((startValue.getCircleStroke03() + (endValue.getCircleStroke03() - startValue.getCircleStroke03()) * fraction));
