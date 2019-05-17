@@ -26,15 +26,15 @@ public class PrcentCircle extends View {
     /**
      * 初始百分比
      */
-    private int baiFenBi01 = 0;
-    private int baiFenBi02 = 0;
-    private int baiFenBi03 = 0;
-    private int baiFenBi04 = 0;
-    private int baiFenBi05 = 0;
+    private float baiFenBi01 = 0;
+    private float baiFenBi02 = 0;
+    private float baiFenBi03 = 0;
+    private float baiFenBi04 = 0;
+    private float baiFenBi05 = 0;
     /**
      * 进度初始位置
      */
-    private int kaiShiDuShu = 70;
+    private float kaiShiDuShu = 70;
     /**
      * 初始圆圈宽度
      */
@@ -98,7 +98,7 @@ public class PrcentCircle extends View {
         canvas.drawArc(oval1, kaiShiDuShu - baiFenBi01 - baiFenBi02 - baiFenBi03, baiFenBi03, false, paintCircle);
         paintCircle.setStrokeWidth(circleStroke04);
         paintCircle.setColor(color04);
-        canvas.drawArc(oval1, kaiShiDuShu, 360 - (baiFenBi03 + baiFenBi02 + baiFenBi01), false, paintCircle);
+        canvas.drawArc(oval1, kaiShiDuShu, 360f - (baiFenBi03 + baiFenBi02 + baiFenBi01), false, paintCircle);
 
         paintCircle.setStrokeWidth(circleStroke05);
         paintCircle.setColor(color05);
@@ -155,21 +155,21 @@ public class PrcentCircle extends View {
         //画圆圈
         paintCircle.setStrokeWidth(circleStroke);
         paintCircle.setColor(color01);
-        canvas.drawArc(oval1, kaiShiDuShu, 360, false, paintCircle);
+        canvas.drawArc(oval1, kaiShiDuShu, 360f, false, paintCircle);
         if (index == 1) {
             paintCircle.setStrokeWidth(circleStroke + 1);
         } else {
             paintCircle.setStrokeWidth(circleStroke);
         }
         paintCircle.setColor(color02);
-        canvas.drawArc(oval1, kaiShiDuShu, 360 - baiFenBi01, false, paintCircle);
+        canvas.drawArc(oval1, kaiShiDuShu, 360f - baiFenBi01, false, paintCircle);
         if (index == 2) {
             paintCircle.setStrokeWidth(circleStroke + 1);
         } else {
             paintCircle.setStrokeWidth(circleStroke);
         }
         paintCircle.setColor(color03);
-        canvas.drawArc(oval1, kaiShiDuShu, 360 - baiFenBi01 - baiFenBi02, false, paintCircle);
+        canvas.drawArc(oval1, kaiShiDuShu, 360f - baiFenBi01 - baiFenBi02, false, paintCircle);
         if (index == 3) {
             paintCircle.setStrokeWidth(circleStroke + 1);
         } else {
@@ -177,7 +177,7 @@ public class PrcentCircle extends View {
         }
 //        paintCircle.setColor(index == -1 ? color05 : color04);
         paintCircle.setColor(color04);
-        canvas.drawArc(oval1, kaiShiDuShu, 360 - baiFenBi01 - baiFenBi02 - baiFenBi03, false, paintCircle);
+        canvas.drawArc(oval1, kaiShiDuShu, 360f - baiFenBi01 - baiFenBi02 - baiFenBi03, false, paintCircle);
         if (index == -1) {
             paintCircle.setStrokeWidth(circleStroke + 2);
         } else {
@@ -190,7 +190,7 @@ public class PrcentCircle extends View {
         RectF oval2 = new RectF(circleStroke + circleStroke / 2f, circleStroke + circleStroke / 2f, getWidth() - circleStroke - circleStroke / 2f, getHeight() - circleStroke - circleStroke / 2f);
         paintCircle.setColor(Color.parseColor("#ffffff"));
         paintCircle.setStyle(Paint.Style.FILL);
-        canvas.drawArc(oval2, kaiShiDuShu, 360, true, paintCircle);
+        canvas.drawArc(oval2, kaiShiDuShu, 360f, true, paintCircle);
 
     }
 
@@ -239,14 +239,14 @@ public class PrcentCircle extends View {
         invalidate();
     }
 
-    public void setBaiFenBiAnim(int baiFenBi01, int baiFenBi02, int baiFenBi03, int baiFenBi04) {
-        List<Integer> baiFenBiList = new ArrayList<>();
+    public void setBaiFenBiAnim(float baiFenBi01, float baiFenBi02, float baiFenBi03, float baiFenBi04) {
+        List<Float> baiFenBiList = new ArrayList<>();
         baiFenBiList.add(baiFenBi01);
         baiFenBiList.add(baiFenBi02);
         baiFenBiList.add(baiFenBi03);
         baiFenBiList.add(baiFenBi04);
         this.baiFenBi04 = baiFenBi04;
-        Integer max = Collections.max(baiFenBiList);
+        Float max = Collections.max(baiFenBiList);
         int indexX = baiFenBiList.indexOf(max);
         int baiFenBi05 = 0;
         if (max == 0) {
@@ -373,10 +373,10 @@ public class PrcentCircle extends View {
 
 
     class BaiFenBi {
-        private int baiFenBi01;
-        private int baiFenBi02;
-        private int baiFenBi03;
-        private int baiFenBi05;
+        private float baiFenBi01;
+        private float baiFenBi02;
+        private float baiFenBi03;
+        private float baiFenBi05;
         private float circleStroke01;
         private float circleStroke02;
         private float circleStroke03;
@@ -387,7 +387,7 @@ public class PrcentCircle extends View {
         public BaiFenBi() {
         }
 
-        public BaiFenBi(int baiFenBi01, int baiFenBi02, int baiFenBi03, int baiFenBi05, float circleStroke01, float circleStroke02, float circleStroke03, float circleStroke04, float circleStroke05, int color4) {
+        public BaiFenBi(float baiFenBi01, float baiFenBi02, float baiFenBi03, float baiFenBi05, float circleStroke01, float circleStroke02, float circleStroke03, float circleStroke04, float circleStroke05, int color4) {
             this.baiFenBi01 = baiFenBi01;
             this.baiFenBi02 = baiFenBi02;
             this.baiFenBi03 = baiFenBi03;
@@ -400,52 +400,36 @@ public class PrcentCircle extends View {
             this.color4 = color4;
         }
 
-        public int getColor4() {
-            return color4;
-        }
-
-        public void setColor4(int color4) {
-            this.color4 = color4;
-        }
-
-        public int getBaiFenBi05() {
-            return baiFenBi05;
-        }
-
-        public void setBaiFenBi05(int baiFenBi05) {
-            this.baiFenBi05 = baiFenBi05;
-        }
-
-        public float getCircleStroke05() {
-            return circleStroke05;
-        }
-
-        public void setCircleStroke05(float circleStroke05) {
-            this.circleStroke05 = circleStroke05;
-        }
-
-        public int getBaiFenBi01() {
+        public float getBaiFenBi01() {
             return baiFenBi01;
         }
 
-        public void setBaiFenBi01(int baiFenBi01) {
+        public void setBaiFenBi01(float baiFenBi01) {
             this.baiFenBi01 = baiFenBi01;
         }
 
-        public int getBaiFenBi02() {
+        public float getBaiFenBi02() {
             return baiFenBi02;
         }
 
-        public void setBaiFenBi02(int baiFenBi02) {
+        public void setBaiFenBi02(float baiFenBi02) {
             this.baiFenBi02 = baiFenBi02;
         }
 
-        public int getBaiFenBi03() {
+        public float getBaiFenBi03() {
             return baiFenBi03;
         }
 
-        public void setBaiFenBi03(int baiFenBi03) {
+        public void setBaiFenBi03(float baiFenBi03) {
             this.baiFenBi03 = baiFenBi03;
+        }
+
+        public float getBaiFenBi05() {
+            return baiFenBi05;
+        }
+
+        public void setBaiFenBi05(float baiFenBi05) {
+            this.baiFenBi05 = baiFenBi05;
         }
 
         public float getCircleStroke01() {
@@ -478,6 +462,22 @@ public class PrcentCircle extends View {
 
         public void setCircleStroke04(float circleStroke04) {
             this.circleStroke04 = circleStroke04;
+        }
+
+        public float getCircleStroke05() {
+            return circleStroke05;
+        }
+
+        public void setCircleStroke05(float circleStroke05) {
+            this.circleStroke05 = circleStroke05;
+        }
+
+        public int getColor4() {
+            return color4;
+        }
+
+        public void setColor4(int color4) {
+            this.color4 = color4;
         }
     }
 
