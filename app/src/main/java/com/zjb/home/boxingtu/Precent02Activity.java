@@ -20,33 +20,17 @@ public class Precent02Activity extends AppCompatActivity {
         precentCircle = findViewById(R.id.precentCircle);
         precentCircle.setBaiFenBiAnim(10, 20, 30, 300);
     }
-
     public void suiJi(View v) {
-        int pre01 = new Random().nextInt(360) + 1;
-        int pre02;
-        int pre03;
-        int pre04;
-        if (360 - pre01 == 0) {
-            pre02 = 0;
-            pre03 = 0;
-            pre04 = 0;
-        } else {
-            pre02 = new Random().nextInt(360 - pre01) + 1;
-            if (360 - pre01 - pre02 == 0) {
-                pre03 = 0;
-                pre04 = 0;
-            } else {
-                pre03 = new Random().nextInt(360 - pre01 - pre02) + 1;
-                if (360 - pre01 - pre02 - pre03 == 0) {
-                    pre04 = 0;
-                } else {
-                    pre04 = 360 - pre01 - pre02 - pre03;
-                }
-            }
-        }
+        float pre01 = new Random().nextFloat();
+        float pre02 = new Random().nextFloat();
+        float pre03 = new Random().nextFloat();
+        float pre04 = new Random().nextFloat();
 
-        LogUtil.LogShitou("Precent02Activity--suiJi", "" + pre01 + " " + pre02 + " " + pre03 + " " + pre04);
-        precentCircle.setBaiFenBiAnim(pre01, pre02, pre03, pre04);
+        float sum = pre01+pre02+pre03+pre04;
+
+
+        LogUtil.LogShitou("Precent02Activity--suiJi", "" + pre01/sum*360f + " " + pre02/sum*360f + " " + pre03/sum*360f + " " + pre04/sum*360f);
+        precentCircle.setBaiFenBiAnim(pre01/sum*360f, pre02/sum*360f, pre03/sum*360f, pre04/sum*360f);
     }
 
     public void ling(View v) {
