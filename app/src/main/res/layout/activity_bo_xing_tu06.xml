@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".BoXingTu06Activity">
+    <com.zjb.home.boxingtu.view.ObservableScrollView
+        android:layout_marginTop="60dp"
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.zjb.home.boxingtu.view.BoXingTu06
+                android:id="@+id/boXingTu"
+                android:layout_width="match_parent"
+                android:layout_height="130dp" />
+        </LinearLayout>
+    </com.zjb.home.boxingtu.view.ObservableScrollView>
+</LinearLayout>
