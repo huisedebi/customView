@@ -31,7 +31,7 @@ public class Progress01 extends View {
     private Paint paintText;
     private Rect rect;
     private float strokeWidthPx;
-    private int progressColor = Color.parseColor("#0095FF");
+    private int progressColor01 = Color.parseColor("#0095FF");
 
     public Progress01(Context context) {
         super(context);
@@ -61,13 +61,13 @@ public class Progress01 extends View {
         super.onDraw(canvas);
         convertDpToPixel = DpUtils.convertDpToPixel(conner, getContext());
         strokeWidthPx = DpUtils.convertDpToPixel(stroke, getContext());
-        paintBg.setColor(progressColor);
+        paintBg.setColor(progressColor01);
         RectF oval1 = new RectF(0, 0, getWidth(), getHeight());// 设置个新的长方形
         canvas.drawRoundRect(oval1, convertDpToPixel, convertDpToPixel, paintBg);//第二个参数是x半径，第三个参数是y半径
         paintBg.setColor(Color.parseColor("#F8F8F8"));
         RectF oval2 = new RectF(strokeWidthPx, strokeWidthPx, getWidth() - strokeWidthPx, getHeight() - strokeWidthPx);// 设置个新的长方形
         canvas.drawRoundRect(oval2, convertDpToPixel, convertDpToPixel, paintBg);//第二个参数是x半径，第三个参数是y半径
-        paintBg.setColor(progressColor);
+        paintBg.setColor(progressColor01);
         float progressWidth =( getWidth()-2f*strokeWidthPx )* precent;
 
         RectF oval4 = new RectF(0, 0, getWidth(), getHeight());// 设置个新的长方形
@@ -87,21 +87,51 @@ public class Progress01 extends View {
         String prcentText = Arith.formatFloatNumber((double) (precent * 100f)) + "%";
         paintText.getTextBounds(prcentText, 0, prcentText.length(), rect);
         if (rect.width() + 2f * DpUtils.convertDpToPixel(8, getContext()) > progressWidth) {
-            paintText.setColor(progressColor);
+            paintText.setColor(progressColor01);
             canvas.drawText(prcentText, progressWidth + DpUtils.convertDpToPixel(8, getContext()), getHeight() / 2f + rect.height() / 2f, paintText);
         } else {
             paintText.setColor(Color.parseColor("#ffffff"));
             canvas.drawText(prcentText, progressWidth - DpUtils.convertDpToPixel(8, getContext()) - rect.width(), getHeight() / 2f + rect.height() / 2f, paintText);
         }
     }
-
+    float[] startHsv = new float[3];
+    float[] endHsv = new float[3];
+    float[] outHsv = new float[3];
     public void setPrecent(float precent) {
         this.precent = precent;
-        if (precent>0.5f){
-            progressColor = Color.parseColor("#FF5500");
-        }else {
-            progressColor = Color.parseColor("#0095FF");
+//        if (precent>0.5f){
+//            progressColor01 = Color.parseColor("#FF5500");
+//        }else {
+//            progressColor01 = Color.parseColor("#0095FF");
+//        }
+
+        // 把 ARGB 转换成 HSV
+        int startValue = Color.parseColor("#0095FF");
+        Color.colorToHSV(startValue, startHsv);
+        int endValue = Color.parseColor("#FF5500");
+        Color.colorToHSV(endValue, endHsv);
+
+        // 计算当前动画完成度（fraction）所对应的颜色值
+        if (endHsv[0] - startHsv[0] > 180) {
+            endHsv[0] -= 360;
+        } else if (endHsv[0] - startHsv[0] < -180) {
+            endHsv[0] += 360;
         }
+        outHsv[0] = startHsv[0] + (endHsv[0] - startHsv[0]) * precent;
+        if (outHsv[0] > 360) {
+            outHsv[0] -= 360;
+        } else if (outHsv[0] < 0) {
+            outHsv[0] += 360;
+        }
+        outHsv[1] = startHsv[1] + (endHsv[1] - startHsv[1]) * precent;
+        outHsv[2] = startHsv[2] + (endHsv[2] - startHsv[2]) * precent;
+
+        // 计算当前动画完成度（fraction）所对应的透明度
+        int alpha = startValue >> 24 + (int) ((endValue >> 24 - startValue >> 24) * precent);
+
+        // 把 HSV 转换回 ARGB 返回
+        progressColor01 = Color.HSVToColor(alpha, outHsv);
+
         invalidate();
     }
 
