@@ -27,9 +27,11 @@ public class Progress01 extends View {
     private int conner = 10;
     private int stroke = 1;
     private float convertDpToPixel;
-    private float precent = 0.1f;
+    private float precent = 0.004f;
     private Paint paintText;
     private Rect rect;
+    private float strokeWidthPx;
+    private int progressColor = Color.parseColor("#0095FF");
 
     public Progress01(Context context) {
         super(context);
@@ -58,26 +60,34 @@ public class Progress01 extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         convertDpToPixel = DpUtils.convertDpToPixel(conner, getContext());
-        paintBg.setColor(Color.parseColor("#0095FF"));
+        strokeWidthPx = DpUtils.convertDpToPixel(stroke, getContext());
+        paintBg.setColor(progressColor);
         RectF oval1 = new RectF(0, 0, getWidth(), getHeight());// 设置个新的长方形
         canvas.drawRoundRect(oval1, convertDpToPixel, convertDpToPixel, paintBg);//第二个参数是x半径，第三个参数是y半径
         paintBg.setColor(Color.parseColor("#F8F8F8"));
-        RectF oval2 = new RectF(DpUtils.convertDpToPixel(1, getContext()), DpUtils.convertDpToPixel(1, getContext()), getWidth() - DpUtils.convertDpToPixel(1, getContext()), getHeight() - DpUtils.convertDpToPixel(1, getContext()));// 设置个新的长方形
+        RectF oval2 = new RectF(strokeWidthPx, strokeWidthPx, getWidth() - strokeWidthPx, getHeight() - strokeWidthPx);// 设置个新的长方形
         canvas.drawRoundRect(oval2, convertDpToPixel, convertDpToPixel, paintBg);//第二个参数是x半径，第三个参数是y半径
-        paintBg.setColor(Color.parseColor("#0095FF"));
-        canvas.save();
+        paintBg.setColor(progressColor);
+        float progressWidth =( getWidth()-2f*strokeWidthPx )* precent;
+
+        RectF oval4 = new RectF(0, 0, getWidth(), getHeight());// 设置个新的长方形
+        Path path1 = new Path();
+        path1.addRoundRect(oval4, new float[]{convertDpToPixel, convertDpToPixel, convertDpToPixel, convertDpToPixel,
+                convertDpToPixel, convertDpToPixel, convertDpToPixel, convertDpToPixel}, Path.Direction.CCW);
+        canvas.clipPath(path1);
+
         Path path = new Path();
-        float precent = this.precent;
-        float progressWidth = getWidth() * precent;
-        RectF oval3 = new RectF(0, 0, progressWidth, getHeight());// 设置个新的长方形
+        canvas.save();
+        RectF oval3 = new RectF(strokeWidthPx, strokeWidthPx, progressWidth, getHeight()-strokeWidthPx);// 设置个新的长方形
         path.addRoundRect(oval3, new float[]{convertDpToPixel, convertDpToPixel, 0, 0,
-                0, 0, convertDpToPixel, convertDpToPixel}, Path.Direction.CW);
+                0, 0, convertDpToPixel, convertDpToPixel}, Path.Direction.CCW);
         canvas.drawPath(path, paintBg);
         canvas.restore();
+
         String prcentText = Arith.formatFloatNumber((double) (precent * 100f)) + "%";
         paintText.getTextBounds(prcentText, 0, prcentText.length(), rect);
         if (rect.width() + 2f * DpUtils.convertDpToPixel(8, getContext()) > progressWidth) {
-            paintText.setColor(Color.parseColor("#0095FF"));
+            paintText.setColor(progressColor);
             canvas.drawText(prcentText, progressWidth + DpUtils.convertDpToPixel(8, getContext()), getHeight() / 2f + rect.height() / 2f, paintText);
         } else {
             paintText.setColor(Color.parseColor("#ffffff"));
@@ -87,10 +97,15 @@ public class Progress01 extends View {
 
     public void setPrecent(float precent) {
         this.precent = precent;
+        if (precent>0.5f){
+            progressColor = Color.parseColor("#FF5500");
+        }else {
+            progressColor = Color.parseColor("#0095FF");
+        }
         invalidate();
     }
 
-    public void setPrecenrAnim(float precent){
+    public void setPrecenrAnim(float precent) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(this, "precent", this.precent, precent);
         animator.setDuration(1000);
         animator.setInterpolator(new LinearInterpolator());
