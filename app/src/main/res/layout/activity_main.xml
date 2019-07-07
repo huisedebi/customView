@@ -56,6 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="波形图05" />
+
             <Button
                 android:id="@+id/btn0023"
                 android:layout_width="match_parent"
@@ -103,6 +104,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="百分比圆圈01" />
+
+            <Button
+                android:id="@+id/btn0024"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="进度条01" />
 
             <Button
                 android:id="@+id/btn0010"
