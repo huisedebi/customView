@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn0022).setOnClickListener(this);
         findViewById(R.id.btn0023).setOnClickListener(this);
         findViewById(R.id.btn0024).setOnClickListener(this);
+        findViewById(R.id.btn0025).setOnClickListener(this);
     }
 
     @Override
@@ -137,6 +138,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn0024:
                 intent.setClass(this, Progress01Activity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn0025:
+                intent.setClass(this, HuaWeiSportActivity.class);
                 startActivity(intent);
                 break;
             default:

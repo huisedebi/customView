@@ -68,6 +68,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="柱状图01" />
+            <Button
+                android:id="@+id/btn0025"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="仿华为运动" />
 
             <Button
                 android:id="@+id/btn0008"
