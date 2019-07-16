@@ -4,8 +4,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
-import android.text.TextUtils;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -38,30 +39,25 @@ public class HuaWeiSport extends View {
             1.00f,
             0.56f,
             0.52f,
+            0.62f,
     };
     private Paint paintText;
     private String[] text = new String[]{
-            "2018-11",
-            "2018-12",
-            "2019-01",
-            "2019-02",
-            "2019-03",
-            "2019-04",
-    };
-    private String[] textLeft = new String[]{
-            "0",
-            "3",
-            "6",
-            "9",
-            "12",
-            "15",
-            "18",
-            "21",
+            "周一",
+            "周二",
+            "周三",
+            "周四",
+            "周五",
+            "周六",
+            "周日",
     };
     private Rect rect;
-    private Rect[] rectLeft = new Rect[8];
     private float quXianPx;
-    private float martop;
+    private float ZhuZhuangWidth = 10f;//柱状宽度
+    private float ZhuZhuangWidthPx;
+    private float marginTop = 15f;//距离顶部
+    private float marginTopPx;
+    private float dp5;
 
     public HuaWeiSport(Context context) {
         super(context);
@@ -95,12 +91,10 @@ public class HuaWeiSport extends View {
         rect = new Rect();
         paintText.getTextBounds(text[0], 0, text[0].length(), rect);
 
-        for (int i = 0; i < rectLeft.length; i++) {
-            rectLeft[i] = new Rect();
-            paintText.getTextBounds(textLeft[i], 0, textLeft[i].length(), rectLeft[i]);
-        }
-        bianJuLeftPx = rectLeft[7].width() + DpUtils.convertDpToPixel(15, getContext());
-        martop = rectLeft[7].height();
+        dp5 = DpUtils.convertDpToPixel(5, getContext());
+
+        ZhuZhuangWidthPx = DpUtils.convertDpToPixel(ZhuZhuangWidth, getContext());
+        marginTopPx = DpUtils.convertDpToPixel(marginTop,getContext());
     }
 
     @Override
@@ -109,47 +103,38 @@ public class HuaWeiSport extends View {
         width = MeasureSpec.getSize(widthMeasureSpec);
         height = MeasureSpec.getSize(heightMeasureSpec);
         widthJianGe = (width - bianJuLeftPx) / numHeng;
-        heightJianGe = (height - bianJuPx - martop) / numShu;
+        heightJianGe = (height - bianJuPx - marginTopPx) / numShu;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float dp5 = DpUtils.convertDpToPixel(5, getContext());
         //画灰色横线
         for (int i = 0; i < numShu + 1; i++) {
-            paintHengXian.setColor(Color.parseColor("#CBCBCB"));
-            canvas.drawLine( bianJuLeftPx-dp5, height - bianJuPx - heightJianGe * i, bianJuLeftPx, height - bianJuPx - heightJianGe * i, paintHengXian);
+            paintHengXian.setColor(Color.parseColor("#f1f1f1"));
+            canvas.drawLine(bianJuLeftPx - dp5, height - bianJuPx - heightJianGe * i, bianJuLeftPx, height - bianJuPx - heightJianGe * i, paintHengXian);
         }
-        //画竖直线
-        canvas.drawLine(bianJuLeftPx,height-bianJuPx,bianJuLeftPx,height - bianJuPx - heightJianGe * numShu,paintHengXian);
         //画柱状
-        paintQuXian01.setColor(Color.parseColor("#508AE4"));
+        paintQuXian01.setColor(Color.parseColor("#007DFD"));
         for (int i = 0; i < numHeng; i++) {
-            canvas.drawRect(
-                    widthJianGe * (i) + bianJuLeftPx + widthJianGe / 8f,
+            canvas.save();
+            Path path1 = new Path();
+            RectF rectf = new RectF(widthJianGe * i +widthJianGe / 2f + bianJuLeftPx - ZhuZhuangWidthPx / 2f,
                     height - bianJuPx - heightJianGe * numShu * line01[i],
-                    widthJianGe * (i + 1) + bianJuLeftPx - widthJianGe / 8f,
-                    height - bianJuPx,
-                    paintQuXian01
-            );
+                    widthJianGe * i +widthJianGe / 2f + bianJuLeftPx + ZhuZhuangWidthPx / 2f,
+                    height - bianJuPx);
+            path1.addRoundRect(rectf, new float[]{ZhuZhuangWidthPx / 2f, ZhuZhuangWidthPx / 2f, ZhuZhuangWidthPx / 2f, ZhuZhuangWidthPx / 2f, 0, 0, 0, 0}, Path.Direction.CCW);
+            canvas.drawPath(path1, paintQuXian01);
+            canvas.restore();
         }
         //画最底部横线
-        paintHengXian.setColor(Color.parseColor("#CBCBCB"));
+        paintHengXian.setColor(Color.parseColor("#f1f1f1"));
         canvas.drawLine(0 + bianJuLeftPx, height - bianJuPx - heightJianGe * 0, width, height - bianJuPx - heightJianGe * 0, paintHengXian);
         //画底部文字和刻度
-        paintHengXian.setColor(Color.parseColor("#CBCBCB"));
+        paintHengXian.setColor(Color.parseColor("#888888"));
         for (int i = 0; i < text.length + 1; i++) {
             if (i < text.length) {
                 canvas.drawText(text[i], (widthJianGe - rect.width()) / 2 + widthJianGe * i + bianJuLeftPx, height - (bianJuPx - rect.height()) / 2, paintText);
-            }
-            canvas.drawLine(+widthJianGe * (i) + bianJuLeftPx, height - bianJuPx, widthJianGe * (i) + bianJuLeftPx, height - bianJuPx + DpUtils.convertDpToPixel(5, getContext()), paintHengXian);
-        }
-        //画竖直文字
-        paintText.setColor(Color.parseColor("#CBCBCB"));
-        for (int i = 0; i < textLeft.length; i++) {
-            if (!TextUtils.isEmpty(textLeft[i])) {
-                canvas.drawText(textLeft[i], bianJuLeftPx - dp5*2f - rectLeft[i].width(), height - heightJianGe * i - bianJuPx + rectLeft[i].height() / 2f, paintText);
             }
         }
     }

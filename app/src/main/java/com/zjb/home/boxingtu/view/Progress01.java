@@ -71,6 +71,7 @@ public class Progress01 extends View {
         float progressWidth =( getWidth()-2f*strokeWidthPx )* precent;
 
         RectF oval4 = new RectF(0, 0, getWidth(), getHeight());// 设置个新的长方形
+
         Path path1 = new Path();
         path1.addRoundRect(oval4, new float[]{convertDpToPixel, convertDpToPixel, convertDpToPixel, convertDpToPixel,
                 convertDpToPixel, convertDpToPixel, convertDpToPixel, convertDpToPixel}, Path.Direction.CCW);
