@@ -1,0 +1,99 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'org.greenrobot.greendao' // apply plugin
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        eventBusIndex: 'com.xinya.baselibrary.MyEventBusIndex', AROUTER_MODULE_NAME: project.getName()
+                ]
+            }
+        }
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+
+        sourceCompatibility JavaVersion.VERSION_1_8
+
+        targetCompatibility JavaVersion.VERSION_1_8
+
+    }
+
+}
+greendao {
+    schemaVersion 1
+    daoPackage 'xinya.com.db'
+    targetGenDir 'src/main/java'
+}
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //noinspection GradleCompatible
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.1.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    //    annotationProcessor 'org.parceler:parceler:1.1.11'
+    api 'androidx.multidex:multidex:2.0.1'
+    api 'com.google.android.material:material:1.0.0'
+    //ARouter依赖配置
+    api 'com.alibaba:arouter-api:1.4.0'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
+    //recyclerview
+    api 'androidx.recyclerview:recyclerview:1.0.0'
+    //butterknife配置
+    api 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    //eventbus事件通知
+    api 'org.greenrobot:eventbus:3.1.1'
+    annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.1.1'
+    //glide图片加载框架
+    api 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    //okgo网络框架
+    api 'com.lzy.net:okgo:3.0.4'
+    //权限框架
+    api 'pub.devrel:easypermissions:3.0.0'
+    //gosn配置
+    api 'com.google.code.gson:gson:2.8.5'
+    //greendao 配置
+    api 'org.greenrobot:greendao:3.2.2'
+    api 'org.greenrobot:greendao-generator:3.2.2'
+    //分割线
+    api 'com.yanyusong.y_divideritemdecoration:y_divideritemdecoration:2.0'
+    //选择图片
+//    api 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+    api project(path: ':picture_library')
+    //banner
+    api 'com.bigkoo:convenientbanner:2.0.5'
+    //flowlayout带标签
+    api 'com.hyman:flowlayout-lib:1.1.2'
+    api files('libs/pgyer_sdk_3.0.3.jar')
+    api 'com.romandanylyk:pageindicatorview:1.0.0'
+    //图片滑动验证
+    api 'com.github.mcxtzhang:SwipeCaptcha:V1.0.0'
+    implementation files('libs/pinyin4j-2.5.0.jar')
+    api project(path: ':zxlibrary')
+    api 'com.github.yuruiyin:AppbarLayoutBehavior:1.0.0'
+}

@@ -1,7 +1,7 @@
 package com.zjb.home.boxingtu;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.zjb.home.boxingtu.view.WaiMaiCircle02;
 

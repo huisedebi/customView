@@ -1,6 +1,6 @@
 package com.zjb.home.boxingtu;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class ZhuZhuangTu01Activity extends AppCompatActivity {

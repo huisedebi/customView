@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Lib-zxing</string>
+    <string name="saoYiSao">扫一扫</string>
+    <string name="quXiao">取消</string>
+    <string name="qingJiangErWeiMa">请将二维码/一维码图案放入取景框中，软件会自动识别，本服务需要联网</string>
+    <string name="xiangCe">相册</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+</resources>

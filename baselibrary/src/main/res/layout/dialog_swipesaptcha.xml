@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@null"
+    tools:ignore="MissingDefaultResource">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/shape_white_5dp"
+        android:orientation="vertical">
+
+        <com.mcxtzhang.captchalib.SwipeCaptchaView
+            android:layout_margin="5dp"
+            android:id="@+id/swipeCaptchaView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerCrop"
+            app:captchaHeight="30dp"
+            app:captchaWidth="30dp"
+            tools:src="@mipmap/drag_cover_c" />
+
+        <LinearLayout
+            android:clipChildren="false"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <SeekBar
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="18dp"
+                android:id="@+id/drag_sb"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:max="1080"
+                android:progressDrawable="@drawable/drag_seek_progress"
+                android:splitTrack="false"
+                android:thumb="@drawable/drag_seek_thumb" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

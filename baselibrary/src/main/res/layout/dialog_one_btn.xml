@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:background="@null"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:background="@drawable/shape_white_5dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:text="提示"
+            android:textColor="@color/black_333333"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:textSize="@dimen/bigText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:gravity="center_horizontal"
+            android:textColor="@color/black_333333"
+            android:textSize="13dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="姓名长度为2-15个汉字！"
+            android:id="@+id/textTitle"
+            />
+
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/normalItemHeight">
+
+            <Button
+                android:background="@drawable/shape_orange_btm5dp"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textSize="@dimen/bigText"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="确定"
+                android:id="@+id/textQueDing"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

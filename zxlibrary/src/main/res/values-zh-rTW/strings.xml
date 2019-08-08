@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Lib-zxing</string>
+    <string name="saoYiSao">掃一掃</string>
+    <string name="quXiao">取消</string>
+    <string name="qingJiangErWeiMa">請將二維碼/壹維碼圖案放入取景框中，軟件會自動識別，本服務需要聯網</string>
+    <string name="xiangCe">相冊</string>
+</resources>

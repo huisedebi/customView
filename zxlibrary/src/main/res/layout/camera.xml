@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:id="@+id/fl_zxing_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include
+        android:id="@+id/includeBar"
+        layout="@layout/view_bar_white1" />
+
+    <TextView
+        android:id="@+id/textDes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textMoney"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:text="请扫描客户的付款码完成收款"
+        android:textColor="@color/white"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/textMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnQuXiao"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:text="¥8"
+        android:textColor="@color/white"
+        android:textSize="35dp" />
+
+    <Button
+        android:id="@+id/btnQuXiao"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/shape_white_15dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="输入付款码"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+</RelativeLayout>

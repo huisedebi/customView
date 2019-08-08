@@ -1,0 +1,12 @@
+<resources>
+
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="result_view">#b0000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="white">#ffffff</color>
+    <color name="tranblack">#66000000</color>
+    <color name="light_black">#333333</color>
+    <color name="line_gray">#f0f0f0</color>
+    <color name="basic_color">#C9151E</color>
+</resources>

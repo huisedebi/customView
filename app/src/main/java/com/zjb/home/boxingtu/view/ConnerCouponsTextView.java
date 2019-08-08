@@ -4,16 +4,11 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.DashPathEffect;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PathEffect;
 import android.graphics.RectF;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.AppCompatTextView;
+
+import androidx.appcompat.widget.AppCompatTextView;
 import android.util.AttributeSet;
-import android.view.View;
-import android.widget.TextView;
 
 import com.zjb.home.boxingtu.R;
 

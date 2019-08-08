@@ -1,6 +1,6 @@
 package com.zjb.home.boxingtu;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.zjb.home.boxingtu.view.BoXingTu02;

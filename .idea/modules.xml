@@ -5,6 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/BoXingTu.iml" filepath="$PROJECT_DIR$/BoXingTu.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/BoXingTu01.iml" filepath="$PROJECT_DIR$/.idea/BoXingTu01.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/baselibrary/baselibrary.iml" filepath="$PROJECT_DIR$/baselibrary/baselibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/picture_library/picture_library.iml" filepath="$PROJECT_DIR$/picture_library/picture_library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ucrop/ucrop.iml" filepath="$PROJECT_DIR$/ucrop/ucrop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zxlibrary/zxlibrary.iml" filepath="$PROJECT_DIR$/zxlibrary/zxlibrary.iml" />
     </modules>
   </component>
 </project>

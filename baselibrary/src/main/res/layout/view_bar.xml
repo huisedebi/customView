@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/viewBar"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/basic_color"
+    android:fitsSystemWindows="true"
+    android:gravity="bottom"
+    android:minHeight="?attr/actionBarSize"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/barHeight">
+
+        <ImageView
+            android:paddingLeft="12dp"
+            android:background="@drawable/white_selector"
+            android:id="@+id/imageBack"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:paddingBottom="15dp"
+            android:paddingRight="20dp"
+            android:paddingTop="15dp"
+            android:src="@mipmap/left_white"
+            android:layout_alignParentLeft="true"/>
+
+        <TextView
+            android:maxLength="11"
+            tools:text="标题"
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/titleSize"/>
+
+        <TextView
+            tools:text="右边"
+            android:background="@drawable/white_selector"
+            android:textSize="@dimen/normal_textsize"
+            android:textColor="@color/white"
+            android:paddingRight="10dp"
+            android:paddingLeft="15dp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textViewRight"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+</LinearLayout>
