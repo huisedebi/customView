@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.zjb.home.boxingtu">
 
     <application
+        android:name="com.xinyartech.baselibrary.application.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".HuaWeiSportActivity"></activity>
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".DatePickerActivity"/>
+        <activity android:name=".HuaWeiSportActivity" />
         <activity android:name=".Progress01Activity" />
         <activity android:name=".BoXingTu06Activity" />
         <activity android:name=".Precent02Activity" />

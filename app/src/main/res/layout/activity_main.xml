@@ -116,6 +116,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="进度条01" />
+            <Button
+                android:id="@+id/btn0026"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="日期选择" />
 
             <Button
                 android:id="@+id/btn0010"

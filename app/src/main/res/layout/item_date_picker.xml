@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_weight="1"
+        android:id="@+id/viewDismiss"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:id="@+id/textMonth"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="九月"
+                android:textColor="@color/colorAccent"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/textYear"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:text="2019"
+                android:textColor="@color/colorAccent"
+                android:textSize="15dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="15dp"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Sun"
+                android:textColor="@color/color_4D4D4D"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Mon"
+                android:textColor="@color/color_4D4D4D"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Tue"
+                android:textColor="@color/color_4D4D4D"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Wen"
+                android:textColor="@color/color_4D4D4D"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Thu"
+                android:textColor="@color/color_4D4D4D"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Fri"
+                android:textColor="@color/color_4D4D4D"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Sat"
+                android:textColor="@color/color_4D4D4D"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <com.xinyartech.baselibrary.easyrecyclerview.EasyRecyclerView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:scrollbarStyle="insideOverlay" />
+    </LinearLayout>
+</LinearLayout>

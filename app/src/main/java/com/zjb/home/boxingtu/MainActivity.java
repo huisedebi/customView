@@ -2,8 +2,9 @@ package com.zjb.home.boxingtu;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.zjb.home.boxingtu.dialog.RedbagDialog;
 
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn0023).setOnClickListener(this);
         findViewById(R.id.btn0024).setOnClickListener(this);
         findViewById(R.id.btn0025).setOnClickListener(this);
+        findViewById(R.id.btn0026).setOnClickListener(this);
     }
 
     @Override
@@ -142,6 +144,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn0025:
                 intent.setClass(this, HuaWeiSportActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn0026:
+                intent.setClass(this, DatePickerActivity.class);
                 startActivity(intent);
                 break;
             default:

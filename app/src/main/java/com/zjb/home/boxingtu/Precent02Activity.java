@@ -1,10 +1,11 @@
 package com.zjb.home.boxingtu;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 
-import com.zjb.home.boxingtu.util.LogUtil;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.xinyartech.baselibrary.utils.LogUtil;
 import com.zjb.home.boxingtu.view.PrcentCircle;
 
 import java.util.Random;

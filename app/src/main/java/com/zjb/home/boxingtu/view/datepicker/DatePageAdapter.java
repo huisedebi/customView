@@ -16,20 +16,20 @@ import java.util.List;
  */
 public class DatePageAdapter extends FragmentPagerAdapter {
 
-    List<Fragment> fragments = new ArrayList<>();
+    List<DateFragment> fragments = new ArrayList<>();
 
-    public DatePageAdapter(FragmentManager fm, List<Fragment> fragments) {
+    public DatePageAdapter(FragmentManager fm, List<DateFragment> fragments) {
         super(fm);
         this.fragments = fragments;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return fragments.get(position);
+        return new DateFragment();
     }
 
     @Override
     public int getCount() {
-        return fragments.size();
+        return 200*12;
     }
 }

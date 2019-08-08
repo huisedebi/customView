@@ -11,13 +11,14 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathEffect;
 import android.graphics.Rect;
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
+
+import com.xinyartech.baselibrary.utils.LogUtil;
 import com.zjb.home.boxingtu.util.DpUtils;
-import com.zjb.home.boxingtu.util.LogUtil;
 
 /**
  * Created by Administrator on 2017/9/27.
