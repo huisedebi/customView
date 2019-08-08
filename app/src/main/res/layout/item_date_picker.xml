@@ -18,7 +18,7 @@
         <RelativeLayout
             android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="60dp">
 
             <TextView
                 android:id="@+id/textMonth"
@@ -46,7 +46,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:paddingTop="15dp"
             android:layout_marginRight="10dp">
 
             <TextView
