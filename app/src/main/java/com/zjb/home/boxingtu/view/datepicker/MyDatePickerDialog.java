@@ -22,6 +22,7 @@ import com.xinyartech.baselibrary.easyrecyclerview.adapter.BaseViewHolder;
 import com.xinyartech.baselibrary.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.xinyartech.baselibrary.easyrecyclerview.decoration.SpaceDecoration;
 import com.xinyartech.baselibrary.utils.DpUtils;
+import com.xinyartech.baselibrary.utils.LogUtil;
 import com.xinyartech.baselibrary.view.WheelView;
 import com.zjb.home.boxingtu.R;
 
@@ -84,22 +85,24 @@ public class MyDatePickerDialog extends Dialog {
             viewHolder.viewPager.setVisibility(View.VISIBLE);
             viewHolder.viewYearMonth.setVisibility(View.GONE);
             String selectedText = viewHolder.wheelView1.getSelectedText();
-            if (wheelType==yearType){
+            if (wheelType == yearType) {
                 viewHolder.viewPager.setCurrentItem((Integer.parseInt(selectedText) - 1900) * 12 + viewHolder.viewPager.getCurrentItem() % 12);
-            }else if (wheelType==monthType){
-                viewHolder.viewPager.setCurrentItem((viewHolder.viewPager.getCurrentItem() /12)*12 + viewHolder.wheelView1.getSelected());
+            } else if (wheelType == monthType) {
+                viewHolder.viewPager.setCurrentItem((viewHolder.viewPager.getCurrentItem() / 12) * 12 + viewHolder.wheelView1.getSelected());
             }
             wheelType = dayType;
         });
         stringsYear = new ArrayList<>();
         stringsMonth = new ArrayList<>();
         positionList = new ArrayList<>();
+        LogUtil.LogShitou("MyDatePickerDialog--init1111", "" + System.currentTimeMillis());
         for (int i = 1900; i < 2100; i++) {
             stringsYear.add(String.valueOf(i));
             for (int j = 0; j < 12; j++) {
                 positionList.add((i - 1900) * 12 + j);
             }
         }
+        LogUtil.LogShitou("MyDatePickerDialog--init2222", "" + System.currentTimeMillis());
         stringsMonth.add("一月");
         stringsMonth.add("二月");
         stringsMonth.add("三月");
@@ -114,6 +117,7 @@ public class MyDatePickerDialog extends Dialog {
         stringsMonth.add("十二月");
         viewHolder.viewPager.setAdapter(new SamplePagerAdapter(context));
         viewHolder.viewPager.setCurrentItem((currentYear - 1900) * 12 + currentMonth - 1);
+        LogUtil.LogShitou("MyDatePickerDialog--init3333", ""+System.currentTimeMillis());
         Window dialogWindow = getWindow();
         dialogWindow.setGravity(Gravity.BOTTOM);
         dialogWindow.setWindowAnimations(R.style.dialogFenXiang);
@@ -123,6 +127,11 @@ public class MyDatePickerDialog extends Dialog {
         dialogWindow.setAttributes(lp);
     }
 
+    @Override
+    public void show() {
+        super.show();
+        LogUtil.LogShitou("MyDatePickerDialog--show", ""+System.currentTimeMillis());
+    }
 
     /**
      * des： 图片adapter
@@ -157,7 +166,7 @@ public class MyDatePickerDialog extends Dialog {
             textMonth.setText(stringsMonth.get(month));
             textYear.setText(String.valueOf(year));
             textYear.setOnClickListener(v -> {
-                wheelType=yearType;
+                wheelType = yearType;
                 viewHolder.textTitle.setText("年份选择");
                 viewHolder.viewPager.setVisibility(View.GONE);
                 viewHolder.viewYearMonth.setVisibility(View.VISIBLE);
@@ -165,7 +174,7 @@ public class MyDatePickerDialog extends Dialog {
                 viewHolder.wheelView1.setDefault(position / 12);
             });
             textMonth.setOnClickListener(v -> {
-                wheelType=monthType;
+                wheelType = monthType;
                 viewHolder.textTitle.setText("月份选择");
                 viewHolder.viewPager.setVisibility(View.GONE);
                 viewHolder.viewYearMonth.setVisibility(View.VISIBLE);
