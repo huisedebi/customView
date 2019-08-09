@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.pgyersdk.update.PgyUpdateManager;
 import com.zjb.home.boxingtu.dialog.RedbagDialog;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -15,6 +16,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        new PgyUpdateManager.Builder()
+                .register();
         findViewById(R.id.btn0001).setOnClickListener(this);
         findViewById(R.id.btn0002).setOnClickListener(this);
         findViewById(R.id.btn0003).setOnClickListener(this);

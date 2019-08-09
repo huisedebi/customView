@@ -32,8 +32,8 @@
             android:authorities="${applicationId}.com.pgyer.provider"
             android:exported="false" />
 
-        <!--<meta-data-->
-            <!--android:name="PGYER_APPID"-->
-            <!--android:value="${PGYER_APPID}" />-->
+        <meta-data
+            android:name="PGYER_APPID"
+            android:value="${PGYER_APPID}" />
     </application>
 </manifest>

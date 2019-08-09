@@ -7,8 +7,9 @@ android {
         applicationId "com.zjb.home.boxingtu"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 19080902
+        versionName "1.0.1"
+        flavorDimensions "versionCode"
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [
@@ -17,11 +18,45 @@ android {
             }
         }
     }
+    signingConfigs {
+        config {
+            keyAlias 'shoukuan'
+            keyPassword 'shoukuan'
+            storeFile file('shoukuan.jks')
+            storePassword 'shoukuan'
+        }
+    }
     buildTypes {
+        debug {
+            signingConfig signingConfigs.config
+        }
         release {
+            signingConfig signingConfigs.config
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    //多渠道打包
+    productFlavors {
+        //信雅收款
+        xinYa {
+            //修改AndroidManifest.xml部分字段(包含logo)
+            manifestPlaceholders = [
+                    PGYER_APPID: "4d82250b4e543a8c1bb0bab95965854b",
+            ]
+        }
+
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            if (variant.buildType.name.equals('release')) {
+                def releaseApkName = "自定义view" + "-" + defaultConfig.versionName + "-" + defaultConfig.versionCode + '.apk'
+                outputFileName = new File("../../release/", releaseApkName)
+            }
+        }
+
     }
     compileOptions {
 
