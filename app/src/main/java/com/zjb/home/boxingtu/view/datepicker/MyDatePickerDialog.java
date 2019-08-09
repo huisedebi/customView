@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -21,6 +22,7 @@ import com.xinyartech.baselibrary.easyrecyclerview.adapter.BaseViewHolder;
 import com.xinyartech.baselibrary.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.xinyartech.baselibrary.easyrecyclerview.decoration.SpaceDecoration;
 import com.xinyartech.baselibrary.utils.DpUtils;
+import com.xinyartech.baselibrary.view.WheelView;
 import com.zjb.home.boxingtu.R;
 
 import java.util.ArrayList;
@@ -38,6 +40,12 @@ public class MyDatePickerDialog extends Dialog {
     private int currentYear = 0;
     private int currentMonth = 0;
     private int currentDay = 0;
+    private ArrayList<String> stringsYear;
+    private ArrayList<String> stringsMonth;
+    private int wheelType = 0;
+    private static int dayType = 0;
+    private static int yearType = 1;
+    private static int monthType = 2;
 
     public interface OnCheckListener {
         void check(int currentYear, int currentMonth, int currentDay);
@@ -69,13 +77,41 @@ public class MyDatePickerDialog extends Dialog {
         View view = inflater.inflate(R.layout.dialog_date_picker, null);
         setContentView(view);
         viewHolder = new ViewHolder(view);
-
+        wheelType = dayType;
+        viewHolder.viewPager.setVisibility(View.VISIBLE);
+        viewHolder.viewYearMonth.setVisibility(View.INVISIBLE);
+        view.findViewById(R.id.textSure).setOnClickListener(v -> {
+            viewHolder.viewPager.setVisibility(View.VISIBLE);
+            viewHolder.viewYearMonth.setVisibility(View.GONE);
+            String selectedText = viewHolder.wheelView1.getSelectedText();
+            if (wheelType==yearType){
+                viewHolder.viewPager.setCurrentItem((Integer.parseInt(selectedText) - 1900) * 12 + viewHolder.viewPager.getCurrentItem() % 12);
+            }else if (wheelType==monthType){
+                viewHolder.viewPager.setCurrentItem((viewHolder.viewPager.getCurrentItem() /12)*12 + viewHolder.wheelView1.getSelected());
+            }
+            wheelType = dayType;
+        });
+        stringsYear = new ArrayList<>();
+        stringsMonth = new ArrayList<>();
         positionList = new ArrayList<>();
         for (int i = 1900; i < 2100; i++) {
+            stringsYear.add(String.valueOf(i));
             for (int j = 0; j < 12; j++) {
                 positionList.add((i - 1900) * 12 + j);
             }
         }
+        stringsMonth.add("一月");
+        stringsMonth.add("二月");
+        stringsMonth.add("三月");
+        stringsMonth.add("四月");
+        stringsMonth.add("五月");
+        stringsMonth.add("六月");
+        stringsMonth.add("七月");
+        stringsMonth.add("八月");
+        stringsMonth.add("九月");
+        stringsMonth.add("十月");
+        stringsMonth.add("十一月");
+        stringsMonth.add("十二月");
         viewHolder.viewPager.setAdapter(new SamplePagerAdapter(context));
         viewHolder.viewPager.setCurrentItem((currentYear - 1900) * 12 + currentMonth - 1);
         Window dialogWindow = getWindow();
@@ -87,15 +123,6 @@ public class MyDatePickerDialog extends Dialog {
         dialogWindow.setAttributes(lp);
     }
 
-    static
-    class ViewHolder {
-        @BindView(R.id.viewPager)
-        ViewPager viewPager;
-
-        ViewHolder(View view) {
-            ButterKnife.bind(this, view);
-        }
-    }
 
     /**
      * des： 图片adapter
@@ -127,46 +154,24 @@ public class MyDatePickerDialog extends Dialog {
             CalendarTool calendarTool = new CalendarTool(getContext());
             int year = (position) / 12 + 1900;
             int month = position % 12;
-            switch (month) {
-                case 0:
-                    textMonth.setText("一月");
-                    break;
-                case 1:
-                    textMonth.setText("二月");
-                    break;
-                case 2:
-                    textMonth.setText("三月");
-                    break;
-                case 3:
-                    textMonth.setText("四月");
-                    break;
-                case 4:
-                    textMonth.setText("五月");
-                    break;
-                case 5:
-                    textMonth.setText("六月");
-                    break;
-                case 6:
-                    textMonth.setText("七月");
-                    break;
-                case 7:
-                    textMonth.setText("八月");
-                    break;
-                case 8:
-                    textMonth.setText("九月");
-                    break;
-                case 9:
-                    textMonth.setText("十月");
-                    break;
-                case 10:
-                    textMonth.setText("十一月");
-                    break;
-                case 11:
-                    textMonth.setText("十二月");
-                    break;
-            }
+            textMonth.setText(stringsMonth.get(month));
             textYear.setText(String.valueOf(year));
-
+            textYear.setOnClickListener(v -> {
+                wheelType=yearType;
+                viewHolder.textTitle.setText("年份选择");
+                viewHolder.viewPager.setVisibility(View.GONE);
+                viewHolder.viewYearMonth.setVisibility(View.VISIBLE);
+                viewHolder.wheelView1.setData(stringsYear);
+                viewHolder.wheelView1.setDefault(position / 12);
+            });
+            textMonth.setOnClickListener(v -> {
+                wheelType=monthType;
+                viewHolder.textTitle.setText("月份选择");
+                viewHolder.viewPager.setVisibility(View.GONE);
+                viewHolder.viewYearMonth.setVisibility(View.VISIBLE);
+                viewHolder.wheelView1.setData(stringsMonth);
+                viewHolder.wheelView1.setDefault(position % 12);
+            });
             List<DateEntity> dateEntityList = calendarTool.getDateEntityList(year, month + 1);
             for (int i = 0; i < dateEntityList.size(); i++) {
                 if (dateEntityList.get(i).year == currentYear && dateEntityList.get(i).month == currentMonth && dateEntityList.get(i).day == currentDay) {
@@ -222,5 +227,23 @@ public class MyDatePickerDialog extends Dialog {
             return POSITION_NONE;
         }
 
+    }
+
+    static
+    class ViewHolder {
+        @BindView(R.id.viewPager)
+        ViewPager viewPager;
+        @BindView(R.id.textSure)
+        TextView textSure;
+        @BindView(R.id.textTitle)
+        TextView textTitle;
+        @BindView(R.id.wheelView1)
+        WheelView wheelView1;
+        @BindView(R.id.viewYearMonth)
+        LinearLayout viewYearMonth;
+
+        ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 }
