@@ -7,8 +7,10 @@ import android.widget.Button;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.xinyartech.baselibrary.baseactivity.ZjbBaseActivity;
 import com.xinyartech.baselibrary.router.RouterUrl;
+import com.xinyartech.baselibrary.utils.DateTransforam;
 import com.zjb.home.boxingtu.view.datepicker.MyDatePickerDialog;
 
+import java.text.ParseException;
 import java.util.Calendar;
 
 import butterknife.BindView;
@@ -71,6 +73,12 @@ public class DatePickerActivity extends ZjbBaseActivity {
         switch (view.getId()) {
             case R.id.btn0001:
                 MyDatePickerDialog myDatePickerDialog = new MyDatePickerDialog(mContext, currentYear, currentMonth, currentDay);
+                try {
+                    myDatePickerDialog.setMin(DateTransforam.dateToStamp("2019-06-20"));
+                    myDatePickerDialog.setMax(DateTransforam.dateToStamp("2019-09-20"));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 myDatePickerDialog.show();
                 myDatePickerDialog.setOnCheckListener((currentYear, currentMonth, currentDay) -> {
                     DatePickerActivity.this.currentYear=currentYear;

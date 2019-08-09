@@ -47,6 +47,8 @@ public class MyDatePickerDialog extends Dialog {
     private static int dayType = 0;
     private static int yearType = 1;
     private static int monthType = 2;
+    private long min = 0;
+    private long max = 0;
 
     public interface OnCheckListener {
         void check(int currentYear, int currentMonth, int currentDay);
@@ -117,7 +119,7 @@ public class MyDatePickerDialog extends Dialog {
         stringsMonth.add("十二月");
         viewHolder.viewPager.setAdapter(new SamplePagerAdapter(context));
         viewHolder.viewPager.setCurrentItem((currentYear - 1900) * 12 + currentMonth - 1);
-        LogUtil.LogShitou("MyDatePickerDialog--init3333", ""+System.currentTimeMillis());
+        LogUtil.LogShitou("MyDatePickerDialog--init3333", "" + System.currentTimeMillis());
         Window dialogWindow = getWindow();
         dialogWindow.setGravity(Gravity.BOTTOM);
         dialogWindow.setWindowAnimations(R.style.dialogFenXiang);
@@ -130,7 +132,15 @@ public class MyDatePickerDialog extends Dialog {
     @Override
     public void show() {
         super.show();
-        LogUtil.LogShitou("MyDatePickerDialog--show", ""+System.currentTimeMillis());
+        LogUtil.LogShitou("MyDatePickerDialog--show", "" + System.currentTimeMillis());
+    }
+
+    public void setMin(long min) {
+        this.min = min;
+    }
+
+    public void setMax(long max) {
+        this.max = max;
     }
 
     /**
@@ -202,19 +212,21 @@ public class MyDatePickerDialog extends Dialog {
                 @Override
                 public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                     int layout = R.layout.item_date_picker_item;
-                    DateItemViewHolder dateItemViewHolder = new DateItemViewHolder(parent, layout, month);
+                    DateItemViewHolder dateItemViewHolder = new DateItemViewHolder(parent, layout, month,min,max);
+                    dateItemViewHolder.setOnSelectListener(dateEntity -> {
+                        if (onCheckListener != null) {
+                            if (dateEntity.month == month + 1) {
+                                onCheckListener.check(dateEntity.year, dateEntity.month, dateEntity.day);
+                                dismiss();
+                            }
+                        }
+                    });
                     return dateItemViewHolder;
                 }
             });
             manager.setSpanSizeLookup(adapter.obtainGridSpanSizeLookUp(7));
             adapter.setOnItemClickListener(position1 -> {
-                if (onCheckListener != null) {
-                    DateEntity dateEntity = adapter.getItem(position1);
-                    if (dateEntity.month == month + 1) {
-                        onCheckListener.check(dateEntity.year, dateEntity.month, dateEntity.day);
-                        dismiss();
-                    }
-                }
+
             });
             adapter.clear();
             adapter.addAll(dateEntityList);
