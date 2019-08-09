@@ -94,6 +94,11 @@ public class MyDatePickerDialog extends Dialog {
             }
             wheelType = dayType;
         });
+        view.findViewById(R.id.textBack).setOnClickListener(v -> {
+            wheelType = dayType;
+            viewHolder.viewPager.setVisibility(View.VISIBLE);
+            viewHolder.viewYearMonth.setVisibility(View.GONE);
+        });
         stringsYear = new ArrayList<>();
         stringsMonth = new ArrayList<>();
         positionList = new ArrayList<>();
@@ -191,6 +196,7 @@ public class MyDatePickerDialog extends Dialog {
                 viewHolder.wheelView1.setData(stringsMonth);
                 viewHolder.wheelView1.setDefault(position % 12);
             });
+
             List<DateEntity> dateEntityList = calendarTool.getDateEntityList(year, month + 1);
             for (int i = 0; i < dateEntityList.size(); i++) {
                 if (dateEntityList.get(i).year == currentYear && dateEntityList.get(i).month == currentMonth && dateEntityList.get(i).day == currentDay) {
