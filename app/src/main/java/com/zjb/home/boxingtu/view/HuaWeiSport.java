@@ -25,7 +25,7 @@ public class HuaWeiSport extends View {
     private float widthJianGe;
     private float heightJianGe;
     private float quXian = 2;
-    private float bianJu = 30;
+    private float bianJu = 80;
     private float radius = 10;
     private float textSize = 11;
     private Paint paintHengXian;
