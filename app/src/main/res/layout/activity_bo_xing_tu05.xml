@@ -11,6 +11,13 @@
         android:paddingTop="20dp"
         android:id="@+id/boxingtu"
         android:layout_width="match_parent"
-        android:layout_height="240dp"/>
+        android:layout_height="200dp"/>
 
+    <Button
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:id="@+id/btnRandom"
+        android:text="随机"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>

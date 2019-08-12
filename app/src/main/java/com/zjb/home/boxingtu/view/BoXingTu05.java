@@ -14,8 +14,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
+import android.view.animation.LinearInterpolator;
 
 import com.xinyartech.baselibrary.utils.LogUtil;
 import com.zjb.home.boxingtu.util.DpUtils;
@@ -278,8 +277,8 @@ public class BoXingTu05 extends View {
 
     public void setBaiFenBiDuAnim(float[] baiFenBiDu) {
         ObjectAnimator animator = ObjectAnimator.ofObject(this, "Line", new HsvEvaluator(), line01, baiFenBiDu);
-        animator.setDuration(3000);
-        animator.setInterpolator(new FastOutSlowInInterpolator());
+        animator.setDuration(2000);
+        animator.setInterpolator(new LinearInterpolator());
         animator.start();
     }
 
