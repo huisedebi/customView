@@ -163,7 +163,7 @@ public class HuaWeiSport extends View {
         super.onDraw(canvas);
         //画灰色横线
         for (int i = 0; i < numShu + 1; i++) {
-            paintHengXian.setColor(Color.parseColor("#f5f5f5"));
+            paintHengXian.setColor(Color.parseColor("#f2f2f2"));
             canvas.drawLine(bianJuLeftPx, height - bianJuPx - heightJianGe * i, width, height - bianJuPx - heightJianGe * i, paintHengXian);
         }
 
