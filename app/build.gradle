@@ -7,8 +7,8 @@ android {
         applicationId "com.zjb.home.boxingtu"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 19080902
-        versionName "1.0.1"
+        versionCode 19081301
+        versionName "1.0.2"
         flavorDimensions "versionCode"
         javaCompileOptions {
             annotationProcessorOptions {
