@@ -1,5 +1,7 @@
 package com.zjb.home.boxingtu.view;
 
+import android.animation.ObjectAnimator;
+import android.animation.TypeEvaluator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -14,7 +16,9 @@ import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 
+import com.xinyartech.baselibrary.utils.LogUtil;
 import com.zjb.home.boxingtu.util.DpUtils;
 
 /**
@@ -37,13 +41,13 @@ public class HuaWeiSport extends View {
     private float bianJuPx;
     private float bianJuLeftPx;
     private float[] line01 = new float[]{
-            0.21f,
-            0.38f,
-            0.48f,
-            1.00f,
-            0.56f,
-            0.52f,
-            0.62f,
+            0.0f,
+            0.0f,
+            0.0f,
+            0.0f,
+            0.0f,
+            0.0f,
+            0.0f,
     };
     private Paint paintText;
     private String[] text = new String[]{
@@ -279,5 +283,30 @@ public class HuaWeiSport extends View {
             return text.length - 1;
         }
         return -1;
+    }
+
+    public void setBaiFenBiDuAnim(float[] baiFenBiDu) {
+        ObjectAnimator animator = ObjectAnimator.ofObject(this, "Line", new HsvEvaluator(), line01, baiFenBiDu);
+        animator.setDuration(1000);
+        animator.setInterpolator(new LinearInterpolator());
+        animator.start();
+    }
+
+    public void setLine(float[] line01) {
+        this.line01 = line01;
+        invalidate();
+    }
+
+    // 自定义 HslEvaluator
+    private class HsvEvaluator implements TypeEvaluator<float[]> {
+        float[] outValue = new float[text.length];
+        @Override
+        public float[] evaluate(float fraction, float[] startValue, float[] endValue) {
+            for (int i = 0; i < startValue.length; i++) {
+                outValue[i] = startValue[i] + (endValue[i] - startValue[i]) * fraction;
+                LogUtil.LogShitou("HsvEvaluator--evaluate", ""+outValue[i]);
+            }
+            return outValue;
+        }
     }
 }

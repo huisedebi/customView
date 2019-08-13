@@ -32,6 +32,7 @@ public class HuaWeiSportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hua_wei_sport);
         ButterKnife.bind(this);
+        huaWeiSport.setBaiFenBiDuAnim(line01);
         huaWeiSport.setOnGetPositionListener(new HuaWeiSport.OnGetPositionListener() {
             @Override
             public void getPosition(int position) {
