@@ -3,13 +3,17 @@ package com.zjb.home.boxingtu.view;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PathEffect;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
+import com.xinyartech.baselibrary.utils.LogUtil;
 import com.zjb.home.boxingtu.util.DpUtils;
 
 /**
@@ -58,6 +62,14 @@ public class HuaWeiSport extends View {
     private float marginTop = 15f;//距离顶部
     private float marginTopPx;
     private float dp5;
+    private Paint paintCircle;
+    private Paint paintBtm;
+    private float radiusPx;
+    private int select = 2;
+    private float ShadowXY = 2;
+    private float pointRadius;
+    private float xDown;
+    private float distance = 0;//左右移动距离
 
     public HuaWeiSport(Context context) {
         super(context);
@@ -79,22 +91,42 @@ public class HuaWeiSport extends View {
         quXianPx = DpUtils.convertDpToPixel(quXian, getContext());
 
         paintQuXian01 = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintQuXian01.setColor(Color.parseColor("#007DFD"));
         paintQuXian01.setStyle(Paint.Style.FILL);
         paintQuXian01.setStrokeWidth(quXianPx);
 
         paintText = new Paint(Paint.ANTI_ALIAS_FLAG);
         paintText.setStyle(Paint.Style.FILL);
         paintText.setTextSize(DpUtils.convertDpToPixel(textSize, context));
-        paintText.setColor(Color.parseColor("#CBCBCB"));
+        paintText.setColor(Color.parseColor("#333333"));
 
         bianJuPx = DpUtils.convertDpToPixel(bianJu, getContext());
         rect = new Rect();
         paintText.getTextBounds(text[0], 0, text[0].length(), rect);
 
         dp5 = DpUtils.convertDpToPixel(5, getContext());
+        radiusPx = DpUtils.convertDpToPixel(radius, getContext());
 
         ZhuZhuangWidthPx = DpUtils.convertDpToPixel(ZhuZhuangWidth, getContext());
-        marginTopPx = DpUtils.convertDpToPixel(marginTop,getContext());
+        marginTopPx = DpUtils.convertDpToPixel(marginTop, getContext());
+        pointRadius = DpUtils.convertDpToPixel(13, getContext());
+
+        paintCircle = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintCircle.setStyle(Paint.Style.FILL);
+        paintCircle.setStrokeWidth(DpUtils.convertDpToPixel(20, getContext()));
+        paintCircle.setColor(Color.WHITE);
+        paintCircle.setShadowLayer(
+                DpUtils.convertDpToPixel(3, getContext()),
+                DpUtils.convertDpToPixel(0, getContext()),
+                DpUtils.convertDpToPixel(2, getContext()),
+                Color.parseColor("#B9B9B9"));
+
+        paintBtm = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintBtm.setStyle(Paint.Style.FILL);
+        paintBtm.setColor(Color.parseColor("#FFF1F1F1"));
+        PathEffect pathEffect = new CornerPathEffect(radiusPx);
+        paintBtm.setStrokeWidth(1);
+        paintBtm.setPathEffect(pathEffect);
     }
 
     @Override
@@ -114,29 +146,54 @@ public class HuaWeiSport extends View {
             paintHengXian.setColor(Color.parseColor("#f1f1f1"));
             canvas.drawLine(bianJuLeftPx - dp5, height - bianJuPx - heightJianGe * i, bianJuLeftPx, height - bianJuPx - heightJianGe * i, paintHengXian);
         }
-        //画柱状
-        paintQuXian01.setColor(Color.parseColor("#007DFD"));
+
         for (int i = 0; i < numHeng; i++) {
-            canvas.save();
-            Path path1 = new Path();
-            RectF rectf = new RectF(widthJianGe * i +widthJianGe / 2f + bianJuLeftPx - ZhuZhuangWidthPx / 2f,
-                    height - bianJuPx - heightJianGe * numShu * line01[i],
-                    widthJianGe * i +widthJianGe / 2f + bianJuLeftPx + ZhuZhuangWidthPx / 2f,
-                    height - bianJuPx);
-            path1.addRoundRect(rectf, new float[]{ZhuZhuangWidthPx / 2f, ZhuZhuangWidthPx / 2f, ZhuZhuangWidthPx / 2f, ZhuZhuangWidthPx / 2f, 0, 0, 0, 0}, Path.Direction.CCW);
-            canvas.drawPath(path1, paintQuXian01);
-            canvas.restore();
+
         }
         //画最底部横线
         paintHengXian.setColor(Color.parseColor("#f1f1f1"));
         canvas.drawLine(0 + bianJuLeftPx, height - bianJuPx - heightJianGe * 0, width, height - bianJuPx - heightJianGe * 0, paintHengXian);
-        //画底部文字和刻度
-        paintHengXian.setColor(Color.parseColor("#888888"));
-        for (int i = 0; i < text.length + 1; i++) {
-            if (i < text.length) {
-                canvas.drawText(text[i], (widthJianGe - rect.width()) / 2 + widthJianGe * i + bianJuLeftPx, height - (bianJuPx - rect.height()) / 2, paintText);
+
+        for (int i = 0; i < text.length; i++) {
+            //画底部文字
+            float textHeightMgr=DpUtils.convertDpToPixel(15,getContext());
+            float textDiatance = (widthJianGe * (select) + widthJianGe / 2f + bianJuLeftPx + distance) - (widthJianGe * (i) + widthJianGe / 2f + bianJuLeftPx);
+            float textPrecent = 0f;
+            if (Math.abs(textDiatance)<=widthJianGe / 2f+dp5*3f){
+                textPrecent = (1f-(Math.abs(textDiatance)/(widthJianGe / 2f+dp5*3f)));
             }
+            textHeightMgr = textHeightMgr*textPrecent;
+            paintText.setAlpha((int) ((0.5f+textPrecent*0.5f)*255));
+            canvas.drawText(text[i], (widthJianGe - rect.width()) / 2 + widthJianGe * i + bianJuLeftPx, height - DpUtils.convertDpToPixel(28, getContext())-textHeightMgr, paintText);
+
+            //画柱状
+            canvas.save();
+            Path path1 = new Path();
+            RectF rectf = new RectF(widthJianGe * i + widthJianGe / 2f + bianJuLeftPx - ZhuZhuangWidthPx / 2f,
+                    height - bianJuPx - heightJianGe * numShu * line01[i],
+                    widthJianGe * i + widthJianGe / 2f + bianJuLeftPx + ZhuZhuangWidthPx / 2f,
+                    height - bianJuPx);
+            paintQuXian01.setAlpha((int) ((0.5f+textPrecent*0.5f)*255));
+            path1.addRoundRect(rectf, new float[]{ZhuZhuangWidthPx / 2f, ZhuZhuangWidthPx / 2f, ZhuZhuangWidthPx / 2f, ZhuZhuangWidthPx / 2f, 0, 0, 0, 0}, Path.Direction.CCW);
+            canvas.drawPath(path1, paintQuXian01);
+            canvas.restore();
         }
+
+        //画底部弓形线
+        canvas.save();
+        Path path = new Path();
+        path.moveTo(-radiusPx, height - DpUtils.convertDpToPixel(20, getContext()));
+        path.lineTo(widthJianGe * (select) + bianJuLeftPx+distance, height - DpUtils.convertDpToPixel(20, getContext()));
+        path.lineTo(widthJianGe * (select) + widthJianGe / 2f + bianJuLeftPx+distance, height - DpUtils.convertDpToPixel(40, getContext()));
+        path.lineTo(widthJianGe * (select) + widthJianGe + bianJuLeftPx+distance, height - DpUtils.convertDpToPixel(20, getContext()));
+        path.lineTo(radiusPx + getWidth(), height - DpUtils.convertDpToPixel(20, getContext()));
+        path.lineTo(radiusPx + getWidth(), height);
+        path.lineTo(-radiusPx, height);
+        path.close();
+        canvas.drawPath(path, paintBtm);
+        canvas.restore();
+        //画底部圆点
+        canvas.drawCircle(widthJianGe * (select) + widthJianGe / 2f + bianJuLeftPx+distance, height - DpUtils.convertDpToPixel(20, getContext()), pointRadius, paintCircle);
     }
 
     public void setValue01(int i, float value) {
@@ -144,4 +201,61 @@ public class HuaWeiSport extends View {
         invalidate();
     }
 
+    private boolean isMove = false;
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                xDown = event.getX();
+                float yDown = event.getY();
+                if (xDown > widthJianGe * (select) + widthJianGe / 2f + bianJuLeftPx - pointRadius
+                        && xDown < widthJianGe * (select) + widthJianGe / 2f + bianJuLeftPx + pointRadius
+                        && yDown > height - DpUtils.convertDpToPixel(20, getContext()) - pointRadius
+                        && yDown < height - DpUtils.convertDpToPixel(20, getContext()) + pointRadius
+                ) {
+                    isMove= true;
+                    LogUtil.LogShitou("HuaWeiSport--onTouchEvent", "按下" + xDown);
+                }
+                return true;
+            case MotionEvent.ACTION_MOVE:
+                float xMove = event.getX();
+                if (isMove){
+                    distance = xMove-xDown;
+                    LogUtil.LogShitou("HuaWeiSport--onTouchEvent", "移动" + (xMove-xDown));
+                    invalidate();
+                }
+                return true;
+            case MotionEvent.ACTION_UP:
+                if (isMove){
+                    float xUp = event.getX();
+                    int position = getPosition(xUp);
+                    LogUtil.LogShitou("HuaWeiSport--onTouchEvent", "松开时的位置"+position);
+                    select=position;
+                    distance = 0;
+                    invalidate();
+                }
+                isMove=false;
+                return true;
+            default:
+                break;
+        }
+        //这句话不要修改
+        return super.onTouchEvent(event);
+    }
+
+    public int getPosition(float x) {
+        for (int i = 0; i < text.length; i++) {
+            if (x > widthJianGe * i  + bianJuLeftPx && x < widthJianGe * i +widthJianGe + bianJuLeftPx ) {
+                return i;
+            }
+        }
+        if (x < bianJuLeftPx) {
+            return 0;
+        }
+        if (x >  widthJianGe * (text.length - 1) + widthJianGe) {
+            return text.length - 1;
+        }
+        return -1;
+    }
 }
